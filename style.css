@@ -1,0 +1,13 @@
+/* MAKE SLIDER LABELS ON OPPOSITE SIDES */
+
+.date-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+#dateSlider {
+    width: 100%;
+}
