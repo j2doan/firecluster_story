@@ -27,19 +27,19 @@
 
     /* First image (Logo. Full height) */
     .bgimg-1 {
-    background-image: url('../images/intro_banner.jpg');
+    background-image: url('/images/intro_banner.jpg');
     min-height: 100%;
     }
 
     /* Second image (Portfolio) */
     .bgimg-2 {
-    background-image: url("../images/intro_banner.jpg");
+    background-image: url("/images/intro_banner.jpg");
     min-height: 400px;
     }
 
     /* Third image (Contact) */
     .bgimg-3 {
-    background-image: url("../images/intro_banner.jpg");
+    background-image: url("/images/intro_banner.jpg");
     min-height: 400px;
     }
 
@@ -92,7 +92,7 @@
         qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     <div class="w3-row">
         <div class="w3-col m6 w3-center w3-padding-large">
-        <img src="../images/intro_banner.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="INTRO PICTURE" width="500" height="333">
+        <img src="/images/intro_banner.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="INTRO PICTURE" width="500" height="333">
         <p><b><i class="fa fa-user w3-margin-right"></i>Caption</b></p><br>
         </div>
 
@@ -169,9 +169,15 @@
             </div>
 
             <input type="range" id="dateSlider">
+            <div class="play-row">
+                <button id="playButton" class="w3-round w3-button w3-light-grey">▶ Play</button>
+                <button id="speedButton" class="w3-round w3-button w3-light-grey">▶▶▶ Fast</button>
+            </div>
         </div>
 
     </div>
+
+    <div id="stats"></div>
 
 
 
@@ -241,7 +247,7 @@
 
     <div class="w3-row w3-padding-32 w3-section">
         <div class="w3-center w3-container">
-        <img src="../images/intro_banner.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" style="width:50%">
+        <img src="/images/intro_banner.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" style="width:50%">
         </div>
 
         <p class="w3-center"><em>Write about our model here!</em></p>
