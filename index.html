@@ -60,6 +60,9 @@
 <!-- NAVBAR (SITS ON TOP) -->
 <div class="w3-top">
     <div class="w3-bar" id="pcNavbar">
+        <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+            <i class="fa fa-bars"></i>
+        </a>
         <a href="#home" class="w3-bar-item w3-button">HOME</a>
         <a href="#introduction" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map-marker"></i> INTRODUCTION</a>
         <a href="#map" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map"></i> MAP</a>
@@ -76,8 +79,10 @@
 
 <!-- BANNER -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-    <div class="w3-display-middle" style="white-space:nowrap;">
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">THE BURNING FATE OF CALIFORNIA</span>
+    <div class="w3-display-middle" style="white-space:nowrap; text-align:center;">
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">THE BURNING FATE</span>
+        <br>
+        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">OF CALIFORNIA</span>
     </div>
 </div>
 
@@ -87,18 +92,19 @@
     <!-- ABOUT ME INTRODUCTION PARAGRAPH -->
     <h3 class="w3-center">INTRODUCTION</h3>
     <p class="w3-center"><em>Write something cool here!</em></p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    <p>California has frequent wildfires ravaging the state AND it is a huge problem. BUT luckily, we have historical data that allows us to identify patterns about these wildfires and their locations within counties. THEREFORE we can use intuition and machine learning to predict future potential breakout locations that will assist in future planning, preparations, or evacuations.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
         qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     <div class="w3-row">
         <div class="w3-col m6 w3-center w3-padding-large">
-        <img src="\images\every_fire.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="INTRO PICTURE" width="500" height="333">
+        <img src="images/every_fire.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="INTRO PICTURE" width="500" height="333">
         <p><b><i class="fa fa-user w3-margin-right"></i>Caption</b></p><br>
         </div>
 
         <!-- Hide this text on small devices -->
-        <div class="w3-col m6 w3-hide-small w3-padding-large">
-        <p>Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+        <div class="w3-col m6 w3-padding-large">
+        <p>Take a look at this map of california that shows every confirmed wilfdire within the past decade from 2014-2024. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
             dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
             incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         </div>
@@ -157,6 +163,11 @@
 <!-- CONTAINER (PORTFOLIO SECTION) -->
 <div class="w3-content w3-container w3-padding-64" id="map">
     <h3 class="w3-center">CALIFORNIA TIMELAPSE</h3>
+
+    <p class="w3-center"><em>Use the time slider to view the wildfires that occured on a specific date.<br>
+        Use the control panel below to adjust the playback speed and run through the dates to see an animated timelapse of wildfire occurences.<br>
+        You may zoom in the map only when the animation is paused.</em></p>
+
     <p id="mapTitle" class="w3-center"></p><br>
 
     <div id="mapContainer"></div>
@@ -247,10 +258,11 @@
 
     <div class="w3-row w3-padding-32 w3-section">
         <div class="w3-center w3-container">
-        <img src="\images\baseline_model.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" style="width:75%">
+        <img src="images/baseline_model.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" style="width:75%">
         </div>
 
-        <p class="w3-center"><em>Write about our model here!</em></p>
+        <p class="w3-center"><em>Here, our baseline "model" (not really) takes in the input coordinates, rounds them, and returns the historical percentage of wildfires that occured at those exact coordinates
+            during the timeframe of our entire dataset.</em></p>
         <!-- <div class="w3-col m8 w3-panel">
         <div class="w3-large w3-margin-bottom">
             <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Chicago, US<br>
