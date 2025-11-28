@@ -79,6 +79,24 @@
 
 <!-- BANNER -->
 <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+    <div class="w3-display-middle title-box" style="white-space:nowrap; text-align:center;">
+        
+        <!-- MOBILE -->
+        <div class="title-multiline">
+            <span class="title-item">THE BURNING</span><br>
+            <span class="title-item">FATE</span><br>
+            <span class="title-item">OF CALIFORNIA</span>
+        </div>
+
+        <!-- DESKTOP -->
+        <div class="title-single">
+            <span class="title-item">THE BURNING FATE OF CALIFORNIA</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
     <div class="w3-display-middle" style="white-space:nowrap; text-align:center;">
         <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">THE BURNING</span>
         <br>
@@ -86,7 +104,8 @@
         <br>
         <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">OF CALIFORNIA</span>
     </div>
-</div>
+</div> -->
+
 
 <!-- CONTAINER (ABOUT SECTION) -->
 <div class="w3-content w3-container w3-padding-64" id="introduction">
@@ -106,9 +125,19 @@
 
         <!-- Hide this text on small devices -->
         <div class="w3-col m6 w3-padding-large">
-        <p>Take a look at this map of california that shows every confirmed wilfdire within the past decade from 2014-2024. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p>Take a look at this map of california that shows every confirmed wilfdire within the past decade from 2014-2024. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <div id="human-caused-question" style="text-align: center;">
+                <label for="humanSelect" style="text-align:center; color:#C52233;"><strong>What percentage of wildfires do you think were caused by humans?</strong></label>
+                <div class="options">
+                    <button class="option-btn" data-answer="30">30%</button>
+                    <button class="option-btn" data-answer="50">50%</button>
+                    <button class="option-btn" data-answer="70">70%</button>
+                    <button class="option-btn" data-answer="90">90%</button>
+                </div>
+                <div id="humanAnswer" style="text-align:center;"></div>
+            </div>
         </div>
     </div>
 
@@ -126,6 +155,17 @@
     <div class="w3-light-grey">
         <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:75%">75%</div>
     </div> -->
+
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+        qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Hint: Look at the image to the left, and make a better guess which county has the most wildfires. Then, in the next section, hover over that county and find its name.</p>
+    <div id="most-fires-question" style="text-align:center;">
+        <label for="countySelect" style="color:#C52233;"><strong>Which county do you predict will have the most fires from 2014-2024?<br><br></strong></label>
+        <select id="countySelect">
+            <option value="">-- Select a county --</option>
+        </select>
+    </div>
 
 </div>
 
@@ -164,15 +204,23 @@
 
 <!-- CONTAINER (PORTFOLIO SECTION) -->
 <div class="w3-content w3-container w3-padding-64" id="map">
-    <h3 class="w3-center">CALIFORNIA TIMELAPSE</h3>
+    <h3 class="w3-center">CALIFORNIA TIMELAPSE</h3><br>
 
-    <p class="w3-center"><em>Use the time slider to view the wildfires that occured on a specific date.<br>
-        Use the control panel below to adjust the playback speed and run through the dates to see an animated timelapse of wildfire occurences.<br>
-        You may zoom in the map only when the animation is paused.</em></p>
+    <p class="w3-center">INSTRUCTIONS</p>
+    <p id="instructions" class="w3-left-align" style="max-width: 850px; margin: auto;">
+        1. <b>🤔 Choose a county</b> in the previous section that you think will have the most wildfires from 2014–2024. (Recommended)<br>
+        2. <b>🗺️ Hover over the map</b> to view county names.<br>
+        3. <b>⏱️ Use the time slider</b> to explore wildfires on any specific date.<br>
+        4. <b>⏯️ Press the play button</b> to animate wildfire activity over time.<br>
+        5. <b>🎚️ Adjust the playback speed</b> with the speed control.<br>
+        6. <b>🤯 Watch the bar chart update</b> below to see which county accumulates the most wildfires!
+        </p>
 
-    <p id="mapTitle" class="w3-center"></p><br>
+    <h4 id="mapTitle" class="w3-center"><br>WELCOME TO CALIFORNIA</h4><br>
 
     <div id="mapContainer"></div>
+    <div id="tooltip"></div>
+
 
     <div id="controls">
         <div id="dateSelector">
@@ -190,6 +238,8 @@
 
     </div>
 
+    <div id="warning" style="text-align: center; font-weight:bold; color:red;">⚠️ It is recommended to scroll back up to the previous section and select a county prediction before pressing play! ⚠️</div>
+    <div id="answer" style="text-align: center;"></div>
     <div id="stats"></div>
 
 

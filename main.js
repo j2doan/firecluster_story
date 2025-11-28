@@ -38,12 +38,25 @@ dateSlider.min = 0;
 dateSlider.max = dates.length - 1;
 dateSlider.step = 1;
 
-let selectedDate = localStorage.getItem('date') || dates[0];
+// let selectedDate = localStorage.getItem('date') || dates[0];
+let selectedDate = dates[0];
 let currentIndex = dates.indexOf(selectedDate);
 if (currentIndex === -1) currentIndex = 0;
 
 dateSlider.value = currentIndex;
 dateLabel.textContent = dates[currentIndex];
+
+// DATE SLIDE CHANGE COLOR
+function updateSliderFill(slider) {
+    const value = (slider.value - slider.min) / (slider.max - slider.min) * 100;
+    slider.style.background = `linear-gradient(to right, #A51C30 0%, #A51C30 ${value}%, #ddd ${value}%, #ddd 100%)`;
+}
+
+updateSliderFill(dateSlider);
+
+dateSlider.addEventListener("input", () => {
+    updateSliderFill(dateSlider);
+});
 
 
 
@@ -69,9 +82,9 @@ const playButton = document.getElementById("playButton");
 const speedButton = document.getElementById("speedButton");
 
 // RESET ZOOM
-function resetZoom() {
-    mapSvg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
-}
+// function resetZoom() {
+//     mapSvg.transition().duration(500).call(zoom.transform, d3.zoomIdentity);
+// }
 
 // PLAY / PAUSE
 playButton.addEventListener("click", () => {
@@ -82,8 +95,8 @@ playButton.addEventListener("click", () => {
         playButton.textContent = "⏸ Pause";
 
         // RESET ZOOM AND DISABLE INTERACTION WHEN PLAYING
-        resetZoom();
-        mapSvg.on(".zoom", null);
+        // resetZoom();
+        // mapSvg.on(".zoom", null);
 
         playInterval = setInterval(tickForward, speed);
     } else {
@@ -93,9 +106,11 @@ playButton.addEventListener("click", () => {
         clearInterval(playInterval);
 
         // RE-ENABLE ZOOM
-        mapSvg.call(zoom);
+        // mapSvg.call(zoom);
     }
 });
+
+
 
 // SPEED MODE CYCLER
 speedButton.addEventListener("click", () => {
@@ -126,19 +141,44 @@ speedButton.addEventListener("click", () => {
     }
 });
 
+
+
 // SLIDER STEP FUNCTION
 function tickForward() {
     let idx = +dateSlider.value;
-    idx++;
-    if (idx > dates.length - 1) {
-        idx = 0;
+
+    // IF REACH THE END, DO NOT CONTINUE
+    if (idx === dates.length - 1) {
+        return
     }
+    // OTHERWISE NEXT DATE
+    idx++;
+    
+    // IF REACH THE END (FIRST TIME THIS SHOULD HAPPEN BEFORE THE PREMATURE STOP ABOVE)
+    if (idx >= dates.length - 1) {
+
+        // WRITE TEXT TO LET USE RKNOW IF PREDICTION CORRECT OR NOT
+        if (predictedCounty) {
+            const lastDate = dates[idx];
+            const values = countyCounts[lastDate];
+            const maxIndex = values.indexOf(Math.max(...values));
+            const correctCounty = countyNames[maxIndex];
+
+            const answerDiv = d3.select("#answer");
+            if (predictedCounty === correctCounty) {
+                answerDiv.text(`✅ Wow your prediction was CORRECT! ${predictedCounty} had the most fires.`);
+            } else {
+                answerDiv.text(`❌ Sorry your prediction was INCORRECT! ${correctCounty} had the most fires.`);
+            }
+        }
+    }
+
     dateSlider.value = idx;
     selectedDate = dates[idx];
     dateLabel.textContent = selectedDate;
-    localStorage.setItem("date", selectedDate);
 
     loadAndPlot();
+    updateSliderFill(dateSlider);
 }
 
 
@@ -182,25 +222,23 @@ mapSvg.selectAll("path")
     .attr("stroke-width", 0.5);
 
 // LOAD US COUNTIES
-const countiesTopo = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json");
-const counties = topojson.feature(countiesTopo, countiesTopo.objects.counties);
 
-// FILTER COUNTIES IN CALIFORNIA (FIPS prefix "06")
-const caCounties = {
-    type: "FeatureCollection",
-    features: counties.features.filter(c => c.id.startsWith("06"))
-};
+const countiesTopo = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json");
+
+const allCounties = topojson.feature(countiesTopo, countiesTopo.objects.counties).features;
+
+const caCounties = allCounties.filter(f => f.id.startsWith("06"));
 
 // DRAW COUNTY BORDERS
-mapSvg.selectAll(".county")
-    .data(caCounties.features)
+mapSvg.selectAll("path.county")
+    .data(caCounties)
     .join("path")
     .attr("class", "county")
     .attr("d", geoPath)
-    .attr("fill", "none")
-    .attr("stroke", "#999")
-    .attr("stroke-width", 0.3)
-    .attr("opacity", 0.8);
+    .attr("fill", "#e0e0e0")
+    .attr("stroke", "#333")
+    .attr("stroke-width", 0.5);
+
 
 
 
@@ -237,43 +275,53 @@ const byDate = d3.group(
 
 
 
+// FILTE BY DATE
 function filterDataByDate(date) {
     return byDate.get(date) || [];
 }
 
+// LITTLESMALL RANDOMIZATION SO DOTS CAN BE SEEN BETTER
+function addJitter(d) {
+    if (d.jitterX === undefined) {
+        d.jitterX = (rng() - 0.5) * 10;
+        d.jitterY = (rng() - 0.5) * 10;
+    }
+    return d;
+}
+
 // DRAW FUNCTION
 function drawMap(filtered) {
-    const jitter = 10
+    let filtered_jitter = filtered.map(addJitter);
     const circles = mapSvg.selectAll("circle")
-        .data(filtered, d => d.id || `${d.acq_date}-${d.latitude}-${d.longitude}`)
+        .data(filtered_jitter, d => d.id || `${d.acq_date}-${d.latitude}-${d.longitude}`)
             .join(
                 enter => enter.append("circle")
                     .attr("r", 3)
                     .attr("opacity", 0.6)
                     .attr("fill", d => colorScale(d.brightness))
-                    .attr("cx", d => d.x + (rng() - 0.5) * jitter)
-                    .attr("cy", d => d.y + (rng() - 0.5) * jitter),
+                    .attr("cx", d => d.x + d.jitterX)
+                    .attr("cy", d => d.y + d.jitterY),
                 update => update
                     .transition()
                     .duration(100)
-                    .attr("cx", d => d.x + (rng() - 0.5) * jitter)
-                    .attr("cy", d => d.y + (rng() - 0.5) * jitter),
+                    .attr("cx", d => d.x + d.jitterX)
+                    .attr("cy", d => d.y + d.jitterY),
                 exit => exit.remove()
             );
 }
 
 // ZOOM FUNCTION
-const zoom = d3.zoom()
-    .scaleExtent([1, 8])  // min/max zoom
-    .on("zoom", (event) => {
-        mapSvg.selectAll("path")
-            .attr("transform", event.transform);
+// const zoom = d3.zoom()
+//     .scaleExtent([1, 8])  // min/max zoom
+//     .on("zoom", (event) => {
+//         mapSvg.selectAll("path")
+//             .attr("transform", event.transform);
 
-        mapSvg.selectAll("circle")
-            .attr("transform", event.transform);
-    });
+//         mapSvg.selectAll("circle")
+//             .attr("transform", event.transform);
+//     });
 
-mapSvg.call(zoom);
+// mapSvg.call(zoom);
 
 
 
@@ -281,11 +329,12 @@ mapSvg.call(zoom);
 
 
 
+// UPDATE SLIDE WHEN THERE IS A CHANGE
 dateSlider.addEventListener('input', () => {
     const idx = +dateSlider.value;
     selectedDate = dates[idx];
 
-    localStorage.setItem('date', selectedDate);
+    // localStorage.setItem('date', selectedDate);
     dateLabel.textContent = selectedDate;
 
     loadAndPlot()
@@ -304,40 +353,260 @@ function loadAndPlot() {
         .text(`Wildfires on ${selectedDate}`);
 
     drawMap(filtered);
-    updateStatsPanel(selectedDate)
+    updateBarChart(selectedDate)
 }
 
-// INITIAL RENDER
+
+
+// ---------- BAR CHART ----------
+
+
+
+// INITIAL SETUP
+const statsWidth = 1000;
+const statsHeight = 600;
+const margin = { top: 40, right: 105, bottom: 50, left: 105 };
+
+const statsSvg = d3.select("#stats")
+    .append("svg")
+    .attr("viewBox", `0 0 ${statsWidth} ${statsHeight}`) 
+    .attr("preserveAspectRatio", "xMidYMid meet")
+    .style("width", "100%")
+    .style("height", "auto");
+
+statsSvg.append("text")
+    .attr("id", "chartTitle")
+    .attr("x", statsWidth / 2)
+    .attr("y", margin.top - 20)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "22px")
+    .attr("font-weight", "bold")
+    .text("Which County Had the Most Total Wildfires from 2014-2024?");
+
+statsSvg.append("text")
+    .attr("id", "xLabel")
+    .attr("x", statsWidth / 2)
+    .attr("y", statsHeight - 5)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "16px")
+    .text("Total Wildfires");
+
+statsSvg.append("text")
+    .attr("id", "yLabel")
+    .attr("x", -statsHeight / 2)
+    .attr("y", 12.5)
+    .attr("text-anchor", "middle")
+    .attr("font-size", "16px")
+    .attr("transform", "rotate(-90)")
+    .text("County");
+
+const xScale = d3.scaleLinear()
+    .range([margin.left, statsWidth - margin.right]);
+
+const yScale = d3.scaleBand()
+    .range([margin.top, statsHeight - margin.bottom])
+    .padding(0.15);
+
+const xAxisGroup = statsSvg.append("g")
+    .attr("transform", `translate(0, ${statsHeight - margin.bottom})`);
+
+const yAxisGroup = statsSvg.append("g")
+    .attr("transform", `translate(${margin.left}, 0)`);
+
+
+
+// THE ACTUAL FUNCTION TO UPDATE THE BAR CHART WHEN PLAYING
+function updateBarChart(date) {
+
+    const values = countyCounts[date];
+    if (!values) return;
+
+    // SORT DATA
+    const sortedData = countyNames
+        .map((name, i) => ({ name, value: values[i] }))
+        .sort((a, b) => d3.descending(a.value, b.value));
+
+    // UPDATE SCALES USING SORTED COUNTY NAMES
+    yScale.domain(sortedData.map(d => d.name));
+    xScale.domain([0, d3.max(values)]);
+
+
+    // DRAW
+    statsSvg.selectAll(".bar")
+        .data(sortedData, d => d.name)
+        .join(
+            enter => enter.append("rect")
+                .attr("class", "bar")
+                .attr("x", margin.left)
+                .attr("y", d => yScale(d.name))
+                .attr("height", yScale.bandwidth())
+                .attr("width", 0)
+                .attr("fill", d => d.name === predictedCounty ? "#74121D" : "#d8a6a6")
+                .transition()
+                .duration(100)
+                .attr("width", d => xScale(d.value) - margin.left),
+
+            update => update.transition()
+                .duration(100)
+                .attr("y", d => yScale(d.name))
+                .attr("width", d => xScale(d.value) - margin.left)
+                .attr("fill", d => d.name === predictedCounty ? "#74121D" : "#d8a6a6"),
+
+            exit => exit.remove()
+        );
+
+
+    // ADD CUMULATIVE TOTAL
+    statsSvg.selectAll(".bar-label")
+        .data(sortedData, d => d.name)
+        .join(
+            enter => enter.append("text")
+                .attr("class", "bar-label")
+                .attr("y", d => yScale(d.name) + yScale.bandwidth()/2 + 4)
+                .attr("x", margin.left)
+                .attr("fill", "#222")
+                .attr("font-size", "11px")
+                .attr("text-anchor", "start")
+                .text(d => d.value)
+                .transition()
+                .duration(100)
+                .attr("x", d => xScale(d.value) + 6),
+
+            update => update.transition()
+                .duration(100)
+                .attr("y", d => yScale(d.name) + yScale.bandwidth()/2 + 4)
+                .attr("x", d => xScale(d.value) + 6)
+                .tween("text", function(d) {
+                    const node = d3.select(this);
+                    const current = +node.text();
+                    const interp = d3.interpolateNumber(current, d.value);
+                    return t => node.text(Math.round(interp(t)));
+                }),
+
+            exit => exit.remove()
+        );
+
+
+    // UPDATE AXES
+    xAxisGroup
+        .transition()
+        .duration(100)
+        .call(d3.axisBottom(xScale));
+
+    yAxisGroup
+        .transition()
+        .duration(100)
+        .call(d3.axisLeft(yScale));
+
+}
+
+
+
+// ---------- TOOLTIP ----------
+
+
+
+const tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("background", "white")
+    .style("padding", "4px 8px")
+    .style("border", "1px solid #ccc")
+    .style("border-radius", "4px")
+    .style("pointer-events", "none")
+    .style("display", "none");
+
+mapSvg.selectAll("path.county")
+    .on("mouseover", function(event, d) {
+        tooltip.style("display", "block")
+                .text(d.properties.name);
+        d3.select(this).attr("fill", "#A7333F");
+    })
+    .on("mousemove", function(event) {
+        tooltip.style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY + 10) + "px");
+    })
+    .on("mouseout", function(event, d) {
+    tooltip.style("display", "none");
+
+    // IF THIS IS THE PREDICTED COUNTY, KEEP IT AS THE CORRECT COLOR EVEN WHEN HOVERED OVER
+    const isPredicted = predictedCounty && d.properties.name === predictedCounty;
+        d3.select(this).attr("fill", isPredicted ? "#74121D" : "#e0e0e0");
+    });
+
+mapSvg.selectAll("path.state").lower();
+
+
+
+// ---------- CREATE DROPDOWN AND TRACK PREDICTION ----------
+
+
+
+const countySelect = document.getElementById("countySelect");
+
+// DROPDOWN
+countyNames.forEach(name => {
+    const option = document.createElement("option");
+    option.value = name;
+    option.textContent = name;
+    countySelect.appendChild(option);
+});
+
+// ONCE THE USER SELECTS A PREDICTION, TRACK IT
+let predictedCounty = null;
+countySelect.addEventListener("change", (e) => {
+
+    // REMOVE WARNING TEXT
+    document.getElementById("warning").innerHTML = "";
+    predictedCounty = e.target.value;
+
+    // RESET PREVIOUS PREDICTIONS IF ANY
+    mapSvg.selectAll("path.county").attr("fill", "#e0e0e0");
+    statsSvg.selectAll(".bar").attr("fill", "#74121D");
+
+    // HIGHLIGHT THE SELECTED COUNTY ON MAP AND BAR CHART AS THE CORRECT COLOR
+    if (predictedCounty) {
+        mapSvg.selectAll("path.county")
+        .filter(d => d.properties.name === predictedCounty)
+        .attr("fill", "#74121D");
+
+        statsSvg.selectAll(".bar")
+        .filter(d => d.name === predictedCounty)
+        .attr("fill", "#74121D");
+    }
+});
+
+
+
+// ---------- Q1 MCQ ----------
+
+
+
+const buttons = document.querySelectorAll('.option-btn');
+    const answerDiv = document.getElementById('humanAnswer');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const userAnswer = btn.dataset.answer;
+
+            buttons.forEach(b => b.classList.remove('correct', 'wrong'));
+
+            if(userAnswer === "90"){
+                btn.classList.add('correct');
+                answerDiv.textContent = "Correct! Around 90% of wildfires are caused by humans.";
+                answerDiv.style.color = "green";
+            } else {
+                btn.classList.add('wrong');
+                answerDiv.textContent = "Incorrect. Try again!";
+                answerDiv.style.color = "red";
+            }
+        });
+    });
+
+
+
+// ---------- INITIAL RENDER ----------
+
+
+
 loadAndPlot();
-
-
-
-// ---------- UPDATE STATS PANEL ----------
-
-
-
-function updateStatsPanel(date) {
-    const container = document.getElementById("stats");
-
-    const counts = countyCounts[date];
-
-    if (!counts) {
-        container.innerHTML = "<p>No data available.</p>";
-        return;
-    }
-
-    let html = `<h3>County Fire Totals as of ${date}</h3>`;
-    html += `<div class="county-stats">`;
-
-    for (let i = 0; i < countyNames.length; i++) {
-        html += `
-            <div class="county-row">
-                <span class="county-name">${countyNames[i]}</span>
-                <span class="county-count">${counts[i]}</span>
-            </div>
-        `;
-    }
-
-    html += `</div>`;
-    container.innerHTML = html;
-}
