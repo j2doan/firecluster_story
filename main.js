@@ -389,6 +389,7 @@ statsSvg.append("text")
     .attr("y", statsHeight - 5)
     .attr("text-anchor", "middle")
     .attr("font-size", "16px")
+    .attr("font-weight", "bold")
     .text("Total Wildfires");
 
 statsSvg.append("text")
@@ -398,6 +399,7 @@ statsSvg.append("text")
     .attr("text-anchor", "middle")
     .attr("font-size", "16px")
     .attr("transform", "rotate(-90)")
+    .attr("font-weight", "bold")
     .text("County");
 
 const xScale = d3.scaleLinear()
@@ -532,49 +534,60 @@ mapSvg.selectAll("path.county")
     // IF THIS IS THE PREDICTED COUNTY, KEEP IT AS THE CORRECT COLOR EVEN WHEN HOVERED OVER
     const isPredicted = predictedCounty && d.properties.name === predictedCounty;
         d3.select(this).attr("fill", isPredicted ? "#74121D" : "#e0e0e0");
+    })
+    .on("click", function(event, d) {
+        // REMOVE WARNING (same behavior as dropdown)
+        document.getElementById("warning").innerHTML = "";
+
+        // SET PREDICTION TO THE CLICKED COUNTY
+        setPrediction(d.properties.name);
+
+        // ALSO UPDATE THE DROPDOWN SO THEY MATCH
+        countySelect.value = d.properties.name;
     });
 
 mapSvg.selectAll("path.state").lower();
 
 
 
-// ---------- CREATE DROPDOWN AND TRACK PREDICTION ----------
+// ---------- TRACK PREDICTION ----------
 
 
 
-const countySelect = document.getElementById("countySelect");
+// const countySelect = document.getElementById("countySelect");
 
-// DROPDOWN
-countyNames.forEach(name => {
-    const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    countySelect.appendChild(option);
-});
+// // DROPDOWN
+// countyNames.forEach(name => {
+//     const option = document.createElement("option");
+//     option.value = name;
+//     option.textContent = name;
+//     countySelect.appendChild(option);
+// });
 
 // ONCE THE USER SELECTS A PREDICTION, TRACK IT
+// let predictedCounty = null;
+// countySelect.addEventListener("change", (e) => {
+//     document.getElementById("warning").innerHTML = "";
+//     setPrediction(e.target.value);
+// });
+
 let predictedCounty = null;
-countySelect.addEventListener("change", (e) => {
+function setPrediction(countyName) {
+    predictedCounty = countyName;
 
-    // REMOVE WARNING TEXT
-    document.getElementById("warning").innerHTML = "";
-    predictedCounty = e.target.value;
-
-    // RESET PREVIOUS PREDICTIONS IF ANY
+    // RESET
     mapSvg.selectAll("path.county").attr("fill", "#e0e0e0");
-    statsSvg.selectAll(".bar").attr("fill", "#74121D");
+    statsSvg.selectAll(".bar").attr("fill", "#d8a6a6");
 
-    // HIGHLIGHT THE SELECTED COUNTY ON MAP AND BAR CHART AS THE CORRECT COLOR
-    if (predictedCounty) {
-        mapSvg.selectAll("path.county")
-        .filter(d => d.properties.name === predictedCounty)
+    // HIGHLIGHT SELECTED COUNTY
+    mapSvg.selectAll("path.county")
+        .filter(d => d.properties.name === countyName)
         .attr("fill", "#74121D");
 
-        statsSvg.selectAll(".bar")
-        .filter(d => d.name === predictedCounty)
+    statsSvg.selectAll(".bar")
+        .filter(d => d.name === countyName)
         .attr("fill", "#74121D");
-    }
-});
+}
 
 
 
@@ -602,6 +615,27 @@ const buttons = document.querySelectorAll('.option-btn');
             }
         });
     });
+
+
+
+// ---------- EVERYTHING FADE IN ----------
+
+
+
+const observerOptions = {
+    threshold: 0.1 
+};
+
+const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+        }
+    });
+}, observerOptions);
+
+document.querySelectorAll(".fade-in").forEach(el => fadeObserver.observe(el));
+
 
 
 

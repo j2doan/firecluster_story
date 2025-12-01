@@ -59,21 +59,21 @@
 
 <!-- NAVBAR (SITS ON TOP) -->
 <div class="w3-top">
-    <div class="w3-bar" id="pcNavbar">
+    <div class="w3-bar w3-light-grey w3-card" id="pcNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
         <a href="#home" class="w3-bar-item w3-button">HOME</a>
-        <a href="#introduction" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map-marker"></i> INTRODUCTION</a>
-        <a href="#map" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map"></i> MAP</a>
-        <a href="#model" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-laptop"></i> MODEL</a>
+        <a href="#map-section" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map"></i> MAP</a>
+        <a href="#model-section" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-laptop"></i> MODEL</a>
+        <a href="#credits" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> CREDITS</a>
     </div>
 
     <!-- NAVBAR ON SMALL SCREENS -->
-    <div id="mobileNavbar" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
-        <a href="#introduction" class="w3-bar-item w3-button" onclick="toggleFunction()">INTRODUCTION</a>
-        <a href="#map" class="w3-bar-item w3-button" onclick="toggleFunction()">MAP</a>
-        <a href="#model" class="w3-bar-item w3-button" onclick="toggleFunction()">MODEL</a>
+    <div id="mobileNavbar" class="w3-bar-block w3-light-grey w3-hide w3-hide-large w3-hide-medium">
+        <a href="#map-section" class="w3-bar-item w3-button" onclick="toggleFunction()">MAP</a>
+        <a href="#model-section" class="w3-bar-item w3-button" onclick="toggleFunction()">MODEL</a>
+        <a href="#credits" class="w3-bar-item w3-button" onclick="toggleFunction()">CREDITS</a>
     </div>
 </div>
 
@@ -96,39 +96,29 @@
     </div>
 </div>
 
-<!-- <div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-    <div class="w3-display-middle" style="white-space:nowrap; text-align:center;">
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">THE BURNING</span>
-        <br>
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">FATE</span>
-        <br>
-        <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">OF CALIFORNIA</span>
-    </div>
-</div> -->
-
 
 <!-- CONTAINER (ABOUT SECTION) -->
 <div class="w3-content w3-container w3-padding-64" id="introduction">
 
     <!-- ABOUT ME INTRODUCTION PARAGRAPH -->
-    <h3 class="w3-center">INTRODUCTION</h3>
-    <p class="w3-center"><em>Write something cool here!</em></p>
-    <p>California has frequent wildfires ravaging the state AND it is a huge problem. BUT luckily, we have historical data that allows us to identify patterns about these wildfires and their locations within counties. THEREFORE we can use intuition and machine learning to predict future potential breakout locations that will assist in future planning, preparations, or evacuations.
+    <h3 class="w3-center fade-in">ABSTRACT</h3>
+    <p class="w3-center fade-in"><em>Write something cool here!</em></p>
+    <p class="fade-in">California has frequent wildfires ravaging the state AND it is a huge problem. BUT luckily, we have historical data that allows us to identify patterns about these wildfires and their locations within counties. THEREFORE we can use intuition and machine learning to predict future potential breakout locations that will assist in future planning, preparations, or evacuations.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
         qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-    <div class="w3-row">
+    <div class="w3-row fade-in">
         <div class="w3-col m6 w3-center w3-padding-large">
-        <img src="images/every_fire.png" class="w3-round w3-image w3-opacity w3-hover-opacity-off" alt="INTRO PICTURE" width="500" height="333">
+        <img src="images/every_fire.png" class="w3-round w3-image w3-opacity" alt="INTRO PICTURE" width="500" height="333">
         <p><b><i class="fa fa-user w3-margin-right"></i>Caption</b></p><br>
         </div>
 
         <!-- Hide this text on small devices -->
-        <div class="w3-col m6 w3-padding-large">
+        <div class="w3-col m6 w3-padding-large fade-in">
             <p>Take a look at this map of california that shows every confirmed wilfdire within the past decade from 2014-2024. Lorem ipsum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor
                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <div id="human-caused-question" style="text-align: center;">
+            <div id="human-caused-question" class="fade-in" style="text-align: center;">
                 <label for="humanSelect" style="text-align:center; color:#C52233;"><strong>What percentage of wildfires do you think were caused by humans?</strong></label>
                 <div class="options">
                     <button class="option-btn" data-answer="30">30%</button>
@@ -141,62 +131,23 @@
         </div>
     </div>
 
-    <!-- BAR GRAPHS -->
-    <!-- <p class="w3-large w3-center w3-padding-16">Im really good at:</p>
-    <p class="w3-wide"><i class="fa fa-camera"></i>Photography</p>
-    <div class="w3-light-grey">
-        <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:90%">90%</div>
-    </div>
-    <p class="w3-wide"><i class="fa fa-laptop"></i>Web Design</p>
-    <div class="w3-light-grey">
-        <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:85%">85%</div>
-    </div>
-    <p class="w3-wide"><i class="fa fa-photo"></i>Photoshop</p>
-    <div class="w3-light-grey">
-        <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:75%">75%</div>
-    </div> -->
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    <p class="fade-in">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
         qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Hint: Look at the image to the left, and make a better guess which county has the most wildfires. Then, in the next section, hover over that county and find its name.</p>
-    <div id="most-fires-question" style="text-align:center;">
+    <!-- <div id="most-fires-question" style="text-align:center;">
         <label for="countySelect" style="color:#C52233;"><strong>Which county do you predict will have the most fires from 2014-2024?<br><br></strong></label>
         <select id="countySelect">
             <option value="">-- Select a county --</option>
         </select>
-    </div>
+    </div> -->
 
 </div>
 
 
 
-
-<!-- STATISTICS -->
-<!-- <div class="w3-row w3-center w3-dark-grey w3-padding-16">
-    <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">14+</span><br>
-        Partners
-    </div>
-    <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">55+</span><br>
-        Projects Done
-    </div>
-    <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">89+</span><br>
-        Happy Clients
-    </div>
-    <div class="w3-quarter w3-section">
-        <span class="w3-xlarge">150+</span><br>
-        Meetings
-    </div>
-</div> -->
-
-
-
-
 <!-- SECOND BANNER -->
-<div class="bgimg-2 w3-display-container w3-opacity-min">
+<div class="bgimg-2 w3-display-container w3-opacity-min" id="map-section">
     <div class="w3-display-middle">
         <span class="w3-xxlarge w3-text-white w3-wide">MAP</span>
     </div>
@@ -204,25 +155,24 @@
 
 <!-- CONTAINER (PORTFOLIO SECTION) -->
 <div class="w3-content w3-container w3-padding-64" id="map">
-    <h3 class="w3-center">CALIFORNIA TIMELAPSE</h3><br>
+    <h3 class="w3-center fade-in">CALIFORNIA TIMELAPSE</h3><br>
 
-    <p class="w3-center">INSTRUCTIONS</p>
-    <p id="instructions" class="w3-left-align" style="max-width: 850px; margin: auto;">
-        1. <b>🤔 Choose a county</b> in the previous section that you think will have the most wildfires from 2014–2024. (Recommended)<br>
-        2. <b>🗺️ Hover over the map</b> to view county names.<br>
+    <p class="w3-center fade-in">INSTRUCTIONS</p>
+    <p id="instructions" class="w3-left-align fade-in" style="max-width: 850px; margin: auto;">
+        1. <b>🗺️ Hover over the map</b> to view county names.<br>
+        2. <b>🤔 Choose a county</b> that you think will have the most wildfires from 2014–2024. (Recommended)<br>
         3. <b>⏱️ Use the time slider</b> to explore wildfires on any specific date.<br>
         4. <b>⏯️ Press the play button</b> to animate wildfire activity over time.<br>
         5. <b>🎚️ Adjust the playback speed</b> with the speed control.<br>
-        6. <b>🤯 Watch the bar chart update</b> below to see which county accumulates the most wildfires!
+        6. <b>🤯 Watch the bar chart update</b> below to discover which county accumulated the most wildfires!
         </p>
 
-    <h4 id="mapTitle" class="w3-center"><br>WELCOME TO CALIFORNIA</h4><br>
+    <h4 id="mapTitle" class="w3-center fade-in"><br>MAP OF CALIFORNIA</h4><br>
 
-    <div id="mapContainer"></div>
+    <div id="mapContainer" class="fade-in"></div>
     <div id="tooltip"></div>
 
-
-    <div id="controls">
+    <div id="controls" class="fade-in">
         <div id="dateSelector">
             <div class="date-row">
                 <label for="dateSlider"><strong>Select Date 📅</strong></label>
@@ -238,66 +188,17 @@
 
     </div>
 
-    <div id="warning" style="text-align: center; font-weight:bold; color:red;">⚠️ It is recommended to scroll back up to the previous section and select a county prediction before pressing play! ⚠️</div>
-    <div id="answer" style="text-align: center;"></div>
-    <div id="stats"></div>
+    <div id="warning" class="fade-in" style="text-align: center; font-weight:bold; color:red;">⚠️ It is recommended to scroll back up to the previous section and select a county prediction before pressing play! ⚠️</div>
+    <div id="answer" class="fade-in" style="text-align: center;"></div>
+    <div id="stats" class="fade-in"></div>
 
-
-
-
-    <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
-    <!-- <div class="w3-row-padding w3-center">
-        <div class="w3-col m3">
-        <img src="/w3images/p1.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist over the mountains">
-        </div>
-
-        <div class="w3-col m3">
-        <img src="/w3images/p2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Coffee beans">
-        </div>
-
-        <div class="w3-col m3">
-        <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Bear closeup">
-        </div>
-
-        <div class="w3-col m3">
-        <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Quiet ocean">
-        </div>
-    </div>
-
-    <div class="w3-row-padding w3-center w3-section">
-        <div class="w3-col m3">
-        <img src="/w3images/p5.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The mist">
-        </div>
-
-        <div class="w3-col m3">
-        <img src="/w3images/p6.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="My beloved typewriter">
-        </div>
-
-        <div class="w3-col m3">
-        <img src="/w3images/p7.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Empty ghost train">
-        </div>
-
-        <div class="w3-col m3">
-        <img src="/w3images/p8.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sailing">
-        </div>
-        <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
-    </div> -->
 </div>
-
-<!-- Modal for full size images on click-->
-<!-- <div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
-    <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
-    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-        <img id="img01" class="w3-image">
-        <p id="caption" class="w3-opacity w3-large"></p>
-    </div>
-</div> -->
 
 
 
 
 <!-- THIRD BANNER -->
-<div class="bgimg-3 w3-display-container w3-opacity-min">
+<div class="bgimg-3 w3-display-container w3-opacity-min" id="model-section">
     <div class="w3-display-middle">
         <span class="w3-xxlarge w3-text-white w3-wide">MODEL</span>
     </div>
@@ -305,41 +206,20 @@
 
 <!-- CONTAINER (CONTACT SECTION) -->
 <div class="w3-content w3-container w3-padding-64" id="model">
-    <h3 class="w3-center">PREDICTING FIRE LOCATIONS</h3>
-    <p class="w3-center"><em>Write something cool here!</em></p>
+    <h3 class="w3-center fade-in">PREDICTING FIRE LOCATIONS</h3>
+    <p class="w3-center fade-in"><em>Write something cool here!</em></p>
 
-    <div class="w3-row w3-padding-32 w3-section">
+    <div class="w3-row w3-padding-32 w3-section fade-in">
         <div class="w3-center w3-container">
-        <img src="images/baseline_model.jpg" class="w3-round w3-image w3-opacity w3-hover-opacity-off" style="width:75%">
+        <img src="images/baseline_model.jpg" class="w3-round w3-image w3-opacity" style="width:75%">
         </div>
 
-        <p class="w3-center"><em>Here, our baseline "model" (not really) takes in the input coordinates, rounds them, and returns the historical percentage of wildfires that occured at those exact coordinates
+        <p class="w3-center fade-in"><em>Here, our baseline "model" (not really) takes in the input coordinates, rounds them, and returns the historical percentage of wildfires that occured at those exact coordinates
             during the timeframe of our entire dataset.</em></p>
-        <!-- <div class="w3-col m8 w3-panel">
-        <div class="w3-large w3-margin-bottom">
-            <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Chicago, US<br>
-            <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: +00 151515<br>
-            <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: mail@mail.com<br>
-        </div>
-        <p>Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:</p>
-        <form action="/action_page.php" target="_blank">
-            <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-half">
-                <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-            </div>
-            <div class="w3-half">
-                <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-            </div>
-            </div>
-            <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-            <button class="w3-button w3-black w3-right w3-section" type="submit">
-            <i class="fa fa-paper-plane"></i> SEND MESSAGE
-            </button>
-        </form>
-        </div> -->
 
-        <h3 class="w3-center">TAKEAWAYS</h3>
-        <p class="w3-center"><em>Write about our conclusion here!</em></p>
+
+        <h3 class="w3-center fade-in">TAKEAWAYS</h3>
+        <p class="w3-center fade-in"><em>Write about our conclusion here!</em></p>
     </div>
 </div>
 
@@ -347,7 +227,7 @@
 
 
 <!-- FOOTER -->
-<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+<footer class="w3-center w3-black w3-padding-64 w3-opacity" id="credits">
     <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Back to top</a>
     <p>Authors</p>
     <!-- <div class="w3-xlarge w3-section">
@@ -371,15 +251,15 @@
     }
 
     // Change style of navbar on scroll
-    window.onscroll = function() {myFunction()};
-    function myFunction() {
-        var navbar = document.getElementById("pcNavbar");
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-            navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
-        } else {
-            navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
-        }
-    }
+    // window.onscroll = function() {myFunction()};
+    // function myFunction() {
+    //     var navbar = document.getElementById("pcNavbar");
+    //     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+    //         navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
+    //     } else {
+    //         navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
+    //     }
+    // }
 
     // Used to toggle the menu on small screens when clicking on the menu button
     function toggleFunction() {
