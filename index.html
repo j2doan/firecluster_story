@@ -103,14 +103,16 @@
     <h3 class="w3-center fade-in">ABSTRACT</h3>
     <p class="w3-center fade-in"><em>How good is your intuition?</em></p>
     <p class="fade-in">
-        Over the past decade, California has experienced 9 of the 10 largest fires in its recorded history, with more than 11 million acres burned since 2010 <sup><a href="https://www.fire.ca.gov/our-impact/statistics" target="_blank" style="color: blue;">1</a></sup>. 
+        Over the past decade, California has experienced 9 of the 10 largest fires in its recorded history, with more than 11 million acres burned since 2010 <sup><a href="https://www.fire.ca.gov/our-impact/statistics" target="_blank" style="color: steelblue;">1</a></sup>. 
         These fires led to billions in damages, long-term ecological loss, and several air-quality emergencies that affect millions of residents. 
-        One of the most recent examples was the <b>Palisades Fire</b>, better known as the series of January 2025 wildfires that ravaged Los Angeles. 
+        One wildfire, or rather tragedy, that you should be familiar with is the Palisades Fire. 
+        It better known as the series of January 2025 wildfires that ravaged Los Angeles. 
         Firefighters quite literally ran out of water to put out these fires. 
-        Entire neighborhoods were <b>ERASED OVERNIGHT</b>.
-        Over <b>525K acres</b> were burned, <b>16.5K structures</b> destroyed, and <b>31 fatalities</b>. 
-        Lives, families, homes, businesses, and wildlife were engulfed in these death flames <sup><a href="https://www.fire.ca.gov/incidents/2025" target="_blank" style="color: blue;">2</a></sup>. 
-        As climate change leads to longer and dryer seasons, wildfire frequency and intensity are expected to continue skyrocketing across the state<sup><a href="https://www.drought.gov/news/study-finds-climate-change-blame-record-breaking-california-wildfires-2023-08-08" target="_blank" style="color: blue;">3</a></sup>.
+        <b>Entire neighborhoods were ERASED OVERNIGHT.
+        Over 525K acres were burned, 16.5K structures destroyed, and 31 fatalities were recorded. 
+        Lives, families, homes, businesses, and wildlife were engulfed in these death flames <sup><a href="https://www.fire.ca.gov/incidents/2025" target="_blank" style="color: steelblue;">2</a></sup>. </b>
+        We personally knew some friends and families who had to be evacuated to escape this disaster, because the smoke was unbreathable.
+        As climate change leads to longer and dryer seasons, wildfire frequency and intensity are expected to continue skyrocketing across the state<sup><a href="https://www.drought.gov/news/study-finds-climate-change-blame-record-breaking-california-wildfires-2023-08-08" target="_blank" style="color: steelblue;">3</a></sup>.
     </p>
     
     <p class="w3-center fade-in" style="color:red;">
@@ -118,9 +120,10 @@
     </p>
     <p class="fade-in">
         Because of this, <b>understanding WHERE wildfires tend to occur has become more important than ever</b>.
-        Thanks to decades of historical wildfire data <sup><a href="https://firms.modaps.eosdis.nasa.gov/country/" target="_blank" style="color: blue;">4</a></sup>, 
-        we can now analyze county-level patterns and even train machine-learning models to predict future breakout locations.
-        This knowledge will greatly assist in California policymaking, resource allocations, hazard prevention, evacuation efforts, and many, many more forms aid that will ultimately protect Californians from an increasingly dangerous reality. 
+        Fortunately, we have access to decades of historical wildfire data <sup><a href="https://firms.modaps.eosdis.nasa.gov/country/" target="_blank" style="color: steelblue;">4</a></sup>. 
+        We plan to apporach this problem by first analyzing county-level patterns to train machine-learning models that will predict future breakout locations.
+        This knowledge will hopefully serve as a baseline to be further expanded on. 
+        In turn, this should assist in California policymaking, resource allocations, hazard prevention, evacuation efforts, and many, many more forms aid that will ultimately protect Californians from this increasingly dangerous reality. 
     </p>
     <div class="w3-row fade-in">
         <div class="w3-col m6 w3-center w3-padding-large">
@@ -132,10 +135,10 @@
             <p>
                 <b>But before we dive into prediction, there's something important to understand: <p class="fade-in w3-center" style="color:red;">our intution about wildfires are often wrong.</p></b>
                 Take a look at this map of California that shows every confirmed wildfire that's recorded from 2014 to 2024. 
-                When we saw this map the first time, we identified some emerging patterns at a first glance: 
-                Dense clutters appear along the Sierra Nevada boundary, the northern forests, and parts of Southern California, whereas other regions are more sparse. 
-                At the county level, regions like Shasta, Butte, and Los Angeles consistently appear among the most fire-prone areas, while regions along the Central Valley floor or coastal corridors see far fewer breakouts.
-                But this was simply OUR intution at a first glance. Is that all that is there to be seen with just a first glance? Of course not. 
+                When we saw this map the first time, we tried identifying some emerging patterns at a first glance. 
+                "Dense clutters appear along the Sierra Nevada boundary, the northern forests, and parts of Southern California, whereas other regions are more sparse. 
+                At the county level, regions like Shasta, Butte, and Los Angeles consistently appear among the most fire-prone areas, while regions along the Central Valley floor or coastal corridors see far fewer breakouts."
+                However, this was simply OUR intution at a first glance. Is that all that is there to be seen with just a first glance? Of course not. 
                 <b>In order to truly grasp which areas need aid the most, we need to approach this with hard data.</b> 
             </p>
             <div id="human-caused-question" class="fade-in" style="text-align: center;">
@@ -152,16 +155,17 @@
     </div>
 
     <p class="fade-in">
-        Intuition alone can be misleading.
+        <b>Intuition alone can be misleading.
         Patterns that look obvious at first glance might hide deeper trends.
-        <b>Before we see the real data, let's test your intution.</b>
+        To prove our point, let's test YOUR intution before we see the real data.</b>
         We designed an interactive visualization that shows a timelapse of California wildfires to help illustrate the severity of California wildfires.
         The interactive visualization is a map that animates every recorded wildfire in California from 2014 to 2024.
         You can visualize how fire activity shifts over time, where clusters tend to build up, which regions get hit repeatedly, and how fast these fires accumulate over the years.
         Before watching the timelapse, make a prediction:
         <b>Which California county do you believe will have the most wildfires by the end of the decade?</b>
-        Your choice reflects your current mental model of wildfire behavior.
-        After the animation finishes, you'll see how your intuition compares to the data, and how quickly wildfire activity has escalated over time.
+        Your choice reflects the current human mental model of wildfire behavior.
+        <b>Try basing your prediction based on what you know so far. Have you heard anything from the news recently? Read any articles?</b>
+        After the animation finishes, you'll see how your intuition compares to the data, and how quickly wildfire activity actually escalates over time.
     </p>
 
     <p class="w3-center fade-in" style="color:red;">
@@ -187,11 +191,12 @@
     <p class="w3-center fade-in">INSTRUCTIONS</p>
     <p id="instructions" class="w3-left-align fade-in" style="max-width: 850px; margin: auto;">
         1. <b>🗺️ Hover over the map</b> to view county names.<br>
-        2. <b>🤔 Choose a county</b> that you think will have the most wildfires from 2014–2024. (Recommended)<br>
+        2. <b>🤔 Choose a county</b> that you think will have the most wildfires from 2014–2024.<br>
         3. <b>⏱️ Use the time slider</b> to explore wildfires on any specific date.<br>
         4. <b>⏯️ Press the play button</b> to animate cumulative wildfire activity over time.<br>
         5. <b>🎚️ Adjust the playback speed</b> with the speed control.<br>
-        6. <b>🤯 Watch the bar chart update</b> below to discover which county accumulated the most wildfires!
+        6. <b>🤯 Watch the bar chart update</b> below to discover which county accumulated the most wildfires!<br>
+        7. <b>🤔 Feel free to reselect</b> other counties as the timelapse plays to refine your prediction. Just follow your intuition!<br>
         </p>
 
     <h4 id="mapTitle" class="w3-center fade-in"><br>MAP OF CALIFORNIA</h4><br>
@@ -224,17 +229,17 @@
     <div id="stats" class="fade-in"></div>
 
     <p class="w3-center fade-in">
-        Once you’ve completed the game, take a moment to reflect on the results.
+        Once you've completed the game, take a moment to reflect on the results.
         Were you suprised by which county had the most wildfires?
-        Most people are. Our intuition simply cannot keep up with the true scale and speed of wildfire activity in California.
+        Most people are. Most guesses based on pure intuition were wrong. Our intuition simply cannot keep up with the true scale and speed of wildfire activity in California.
     </p>
 
     <p class="w3-center fade-in" style="color:red;">
         <b>
-            Remember:<br>
-            What seemed like not much at the start quickly ramped up as the years went by.
-            Every bar in this chart represents burned land, destroyed homes, displaced families, and ecosystems trying to recover.
+            But why should we care? Remember:<br>
+            Every bar in this chart represents burned land, destroyed homes, displaced families, and ecosystems trying to recover.<br>
             Each of these dots you see is a wildfire that has the potential to ruin human lives.<br>
+            What seemed like not much at the start quickly ramped up as the years went by.<br>
             This visualization will only get more disgustingly larger in the future, and thus it is our job to be as accurate as possible to minimize the impact of these wildfires.
         </b> 
     </p>
@@ -255,11 +260,11 @@
 <div class="w3-content w3-container w3-padding-64" id="model">
 
     <p class="w3-center fade-in">
-        After seeing how unpredictable and fast-moving wildfire activity can be, the next question becomes:<br><br>
+        After seeing how unpredictable and fast-moving wildfire activity can be, the real question becomes:<br><br>
         <b>Can we do better than intuition? Of course! This is where machine learning comes in.</b><br><br>
         Using historical wildfire records and county-level fire patterns, 
-        we can train a basic machine-learning model to estimate the likelihood of at least one wildfire occurring at a specific County on any given day in California.
-        <b>The goal is to evolve beyond mere human judgment. It is to give firefighters, policymakers, and communities a head start.</b><br><br>
+        we can start by training basic machine-learning models to estimate the likelihood of at least one wildfire occurring at a specific County on any given day in California.
+        <b>The goal is to evolve beyond mere human judgment. This will help give firefighters, policymakers, and communities more information to make better judgements.</b><br><br>
     </p>
 
     <h3 class="w3-center fade-in">PROTOTYPE MODEL</h3>
@@ -387,21 +392,20 @@
         <b>Through the visualizations, we learned that our intuition alone is not enough to understand the scale of the problem.</b> 
         Patterns that seem obvious at first glance hide deeper trends, and even experienced observers often underestimate how and where fire activity builds from year to year.<br><br>
         That is why modeling matters.<br><br>
-        Of course, our prototype machine learning models are not a magical predictor, but it is an important step toward being proactive in condemning California wildfires. 
-        By we can begin to estimate the likelihood of future wildfires, which will give communities, firefighters, 
+        Of course, our prototype machine learning models are not magical foolproof predictors, but it is an important step towards proactively condemning California wildfires. 
+        If we can begin to estimate the likelihood of future wildfires, we can give communities, firefighters, 
         and policymakers critical information they can use to prepare, allocate resources, and act early.<br><br>
-        <b>Our model can be greatly improved upon. This is just a baseline of where to start, and I hope this inspires you to take action.</b> 
-        For more information, check out our github repo.
+        <b>Our model can be greatly improved upon. This is just a baseline of where to start, and we hope this inspires you to take action.</b> 
+        For more information, check out our <a href="https://github.com/j2doan/firecluster_story" target="_blank" style="color: steelblue;">github repo</a>.
         California's wildfire crisis will continue to evolve, but so will our tools, our understanding, and our ability to respond.
-        With better modeling, better data, and better preparation, we can build a future where fewer California communities become ruined by these devastations
+        With better modeling, better data, and better preparation, we can build a future where fewer California communities become ruined by these devastations.
     </p>
 
     <p class="w3-center fade-in" style="color:red;">
         <b>
-            If there is one thing to take away from this project, it is this:<br>
-            Data gives us clarity.<br>
-            Prediction gives us time.<br>
-            And time saves lives.
+            California wildfires are a massive problem and our assumptions about them are usually inaccurate.<br>
+            But luckily, we have the power of machine learning.<br>
+            Therefore we can use this to save lives.
         </b> 
     </p>
     
