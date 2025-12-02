@@ -188,13 +188,19 @@ function tickForward() {
 
 
 // DEFINE MAP STRUCTURE
-const mapWidth = 540;
-const mapHeight = 288;
+const mapWidth = 720;
+const mapHeight = 480;
 
-const mapSvg = d3.select("#mapContainer")
-    .append("svg")
-    .attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`)
-    .attr("preserveAspectRatio", "xMidYMid meet");
+const mapSvg = d3.select("#mapSvg")
+    .attr("width", mapWidth)
+    .attr("height", mapHeight);
+
+// SETUP CANVAS
+const fireCanvas = document.getElementById("fireCanvas");
+fireCanvas.width = mapWidth;
+fireCanvas.height = mapHeight;
+
+const ctx = fireCanvas.getContext("2d");
 
 // LOAD US STATES (TopoJSON → GeoJSON)
 const us = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json");
@@ -222,7 +228,6 @@ mapSvg.selectAll("path")
     .attr("stroke-width", 0.5);
 
 // LOAD US COUNTIES
-
 const countiesTopo = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json");
 
 const allCounties = topojson.feature(countiesTopo, countiesTopo.objects.counties).features;
@@ -263,65 +268,47 @@ const colorScale = d3.scaleLinear()
     .domain([brightnessExtent[0], (brightnessExtent[0]+brightnessExtent[1])/2, brightnessExtent[1]])
     .range(['yellow', 'orange', 'red']);
 
-// PRE_INDEX FIRES FOR INSTANT LOOKUP
-const byDate = d3.group(
-    fireData,
-    d => d.acq_date.toISOString().split("T")[0]
-);
-
 
 
 // ---------- FILTERING ----------
 
 
 
-// FILTE BY DATE
-function filterDataByDate(date) {
-    return byDate.get(date) || [];
-}
+// KEEP TRACK OF THE LAST INDEX DRAWN
+// LATER, WHEN SLIDER MOVES FORWARD, IT ONLY NEEDS TO DRAW THE NEW FIRES AFTER THAT DATE
+// THIS PREVENTS DRAWING 50K FIRES AT ONCE
+let lastDrawnIndex = -1;
 
-// LITTLESMALL RANDOMIZATION SO DOTS CAN BE SEEN BETTER
-function addJitter(d) {
-    if (d.jitterX === undefined) {
-        d.jitterX = (rng() - 0.5) * 10;
-        d.jitterY = (rng() - 0.5) * 10;
+// PREPROCESS EACH FIRE (IT KNOWS WHICH DATE IT BELONGS TO)
+const dateToIndex = new Map(dates.map((d, i) => [d, i]));
+
+fireData.forEach(d => {
+    const iso = d.acq_date.toISOString().split("T")[0];
+    d.dateIndex = dateToIndex.get(iso) ?? -1;
+});
+
+function drawMap(date) {
+    const cutoffIndex = dateToIndex.get(date);
+
+    // IF THE SLIDER MOVED BACKWARDS, THEN, YOU CAN REDRAW EVERYTHING
+    if (cutoffIndex < lastDrawnIndex) {
+        ctx.clearRect(0, 0, mapWidth, mapHeight);
+        lastDrawnIndex = -1;
     }
-    return d;
+
+    // DRAW ONLY NEW FIRES
+    for (const d of fireData) {
+        if (d.dateIndex > lastDrawnIndex && d.dateIndex <= cutoffIndex) {
+            ctx.beginPath();
+            ctx.arc(d.x, d.y, 1, 0, Math.PI * 2);
+            ctx.fillStyle = colorScale(d.brightness);
+            ctx.globalAlpha = 0.6;
+            ctx.fill();
+        }
+    }
+
+    lastDrawnIndex = cutoffIndex;
 }
-
-// DRAW FUNCTION
-function drawMap(filtered) {
-    let filtered_jitter = filtered.map(addJitter);
-    const circles = mapSvg.selectAll("circle")
-        .data(filtered_jitter, d => d.id || `${d.acq_date}-${d.latitude}-${d.longitude}`)
-            .join(
-                enter => enter.append("circle")
-                    .attr("r", 3)
-                    .attr("opacity", 0.6)
-                    .attr("fill", d => colorScale(d.brightness))
-                    .attr("cx", d => d.x + d.jitterX)
-                    .attr("cy", d => d.y + d.jitterY),
-                update => update
-                    .transition()
-                    .duration(100)
-                    .attr("cx", d => d.x + d.jitterX)
-                    .attr("cy", d => d.y + d.jitterY),
-                exit => exit.remove()
-            );
-}
-
-// ZOOM FUNCTION
-// const zoom = d3.zoom()
-//     .scaleExtent([1, 8])  // min/max zoom
-//     .on("zoom", (event) => {
-//         mapSvg.selectAll("path")
-//             .attr("transform", event.transform);
-
-//         mapSvg.selectAll("circle")
-//             .attr("transform", event.transform);
-//     });
-
-// mapSvg.call(zoom);
 
 
 
@@ -334,10 +321,9 @@ dateSlider.addEventListener('input', () => {
     const idx = +dateSlider.value;
     selectedDate = dates[idx];
 
-    // localStorage.setItem('date', selectedDate);
     dateLabel.textContent = selectedDate;
 
-    loadAndPlot()
+    loadAndPlot();
 });
 
 
@@ -346,14 +332,10 @@ dateSlider.addEventListener('input', () => {
 
 
 
+// HELPER FUNCTION
 function loadAndPlot() {
-    const filtered = filterDataByDate(selectedDate);
-
-    d3.select("mapTitle")
-        .text(`Wildfires on ${selectedDate}`);
-
-    drawMap(filtered);
-    updateBarChart(selectedDate)
+    drawMap(selectedDate);
+    updateBarChart(selectedDate);
 }
 
 
@@ -553,23 +535,6 @@ mapSvg.selectAll("path.state").lower();
 // ---------- TRACK PREDICTION ----------
 
 
-
-// const countySelect = document.getElementById("countySelect");
-
-// // DROPDOWN
-// countyNames.forEach(name => {
-//     const option = document.createElement("option");
-//     option.value = name;
-//     option.textContent = name;
-//     countySelect.appendChild(option);
-// });
-
-// ONCE THE USER SELECTS A PREDICTION, TRACK IT
-// let predictedCounty = null;
-// countySelect.addEventListener("change", (e) => {
-//     document.getElementById("warning").innerHTML = "";
-//     setPrediction(e.target.value);
-// });
 
 let predictedCounty = null;
 function setPrediction(countyName) {

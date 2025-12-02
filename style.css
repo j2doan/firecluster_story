@@ -101,6 +101,14 @@
     display: none;
 }
 
+#fireCanvas {
+    pointer-events: none;
+}
+
+#mapSvg {
+    pointer-events: all;
+}
+
 /* MCQ */
 
 .options {
@@ -154,31 +162,6 @@
     margin-top: 15px;
     font-weight: bold;
 }
-
-/* PREDICT QUESTION */
-
-/* #countySelect {
-    padding: 12px 16px;
-    font-size: 16px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: #f8f8f8;
-    cursor: pointer;
-
-    transition: all 250ms ease;
-}
-
-#countySelect:hover {
-    transform: translateY(-2px);
-    border-color: #888;
-    box-shadow: 0 0 6px rgba(0,0,0,0.1);
-}
-
-#countySelect:focus {
-    outline: none;
-    border-color: #4CAF50;
-    box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
-} */
 
 #warning {
     margin-top: 15px;
