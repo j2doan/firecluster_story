@@ -192,8 +192,8 @@ const mapWidth = 720;
 const mapHeight = 480;
 
 const mapSvg = d3.select("#mapSvg")
-    .attr("width", mapWidth)
-    .attr("height", mapHeight);
+    .attr("viewBox", `0 0 ${mapWidth} ${mapHeight}`)
+    .attr("preserveAspectRatio", "xMidYMid meet");
 
 // SETUP CANVAS
 const fireCanvas = document.getElementById("fireCanvas");

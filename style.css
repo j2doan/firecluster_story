@@ -216,6 +216,24 @@
     transform: translateY(0);
 }
 
+.map-container {
+    position: relative;
+    width: 100%;
+    max-width: 720px;   /* whatever limit you want */
+    aspect-ratio: 3 / 2;  /* keeps the same shape as 720×480 */
+    margin: 0 auto;
+}
+
+/* Make SVG + Canvas resize fully with container */
+#mapSvg,
+#fireCanvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0; 
+    left: 0;
+}
+
 /* 
 COLOR PALETTE
 
