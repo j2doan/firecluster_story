@@ -216,15 +216,16 @@
     transform: translateY(0);
 }
 
+/* MAP CONTAINER RESIZE */
+
 .map-container {
     position: relative;
     width: 100%;
-    max-width: 720px;   /* whatever limit you want */
-    aspect-ratio: 3 / 2;  /* keeps the same shape as 720×480 */
+    max-width: 720px;
+    aspect-ratio: 3 / 2;
     margin: 0 auto;
 }
 
-/* Make SVG + Canvas resize fully with container */
 #mapSvg,
 #fireCanvas {
     width: 100%;
