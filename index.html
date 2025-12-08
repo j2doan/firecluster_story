@@ -13,7 +13,7 @@
     body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
     body, html {
     height: 100%;
-    color: #777;
+    color: lightgray;
     line-height: 1.8;
     }
 
@@ -27,8 +27,13 @@
 
     /* First image (Logo. Full height) */
     .bgimg-1 {
-    background-image: url("images/intro_banner.jpg");
-    min-height: 100%;
+    background-image: url("images/california_fires.gif");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    background-attachment: fixed;
+    cursor: pointer;
     }
 
     /* Second image (Portfolio) */
@@ -59,198 +64,391 @@
 
 <!-- NAVBAR (SITS ON TOP) -->
 <div class="w3-top">
-    <div class="w3-bar w3-light-grey w3-card" id="pcNavbar">
+    <div class="w3-bar w3-dark-grey w3-card" id="pcNavbar">
         <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
             <i class="fa fa-bars"></i>
         </a>
         <a href="#home" class="w3-bar-item w3-button">HOME</a>
+        <a href="#abstract" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map-marker"></i> ABSTRACT</a>
         <a href="#map-section" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map"></i> MAP</a>
         <a href="#model-section" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-laptop"></i> MODEL</a>
-        <a href="#credits" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-user"></i> CREDITS</a>
+        <a href="#conclusion" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-flag"></i> CONCLUSION</a>
+        <a href="#credits" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-users"></i> CREDITS</a>
     </div>
 
     <!-- NAVBAR ON SMALL SCREENS -->
-    <div id="mobileNavbar" class="w3-bar-block w3-light-grey w3-hide w3-hide-large w3-hide-medium">
+    <div id="mobileNavbar" class="w3-bar-block w3-dark-grey w3-hide w3-hide-large w3-hide-medium">
+        <a href="#abstract" class="w3-bar-item w3-button" onclick="toggleFunction()">ABSTRACT</a>
         <a href="#map-section" class="w3-bar-item w3-button" onclick="toggleFunction()">MAP</a>
         <a href="#model-section" class="w3-bar-item w3-button" onclick="toggleFunction()">MODEL</a>
+        <a href="#conclusion" class="w3-bar-item w3-button" onclick="toggleFunction()">CONCLUSION</a>
         <a href="#credits" class="w3-bar-item w3-button" onclick="toggleFunction()">CREDITS</a>
     </div>
 </div>
 
-<!-- BANNER -->
-<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
-    <div class="w3-display-middle title-box" style="white-space:nowrap; text-align:center;">
+<!-- HOME BANNER -->
+<div class="bgimg-1 w3-display-container" id="home">
+    <div id="title-area" class="w3-display-middle" style="white-space:nowrap; text-align:center;">
         
         <!-- MOBILE -->
         <div class="title-multiline">
-            <span class="title-item">THE BURNING</span><br>
-            <span class="title-item">FATE</span><br>
-            <span class="title-item">OF CALIFORNIA</span>
+            <span class="title-item"><b>THE BURNING</b></span><br>
+            <span class="title-item"><b>FATE</b></span><br>
+            <span class="title-item"><b>OF CALIFORNIA</b></span>
         </div>
 
         <!-- DESKTOP -->
         <div class="title-single">
-            <span class="title-item">THE BURNING FATE OF CALIFORNIA</span>
+            <span class="title-item"><b>THE BURNING FATE OF CALIFORNIA</b></span>
         </div>
+
+        <div class="click-to-start">CLICK ANYWHERE TO START</div>
 
     </div>
 </div>
 
 
-<!-- ABSTRACT SECTION -->
-<div class="w3-content w3-container w3-padding-64" id="introduction">
 
-    <h3 class="w3-center fade-in">ABSTRACT</h3>
-    <p class="w3-center fade-in"><em>How good is your intuition?</em></p>
-    <p class="fade-in">
-        Over the past decade, California has experienced 9 of the 10 largest fires in its recorded history, with more than 11 million acres burned since 2010 <sup><a href="https://www.fire.ca.gov/our-impact/statistics" target="_blank" style="color: steelblue;">1</a></sup>. 
-        These fires led to billions in damages, long-term ecological loss, and several air-quality emergencies that affect millions of residents. 
-        One wildfire, or rather tragedy, that you should be familiar with is the Palisades Fire. 
-        It better known as the series of January 2025 wildfires that ravaged Los Angeles. 
-        Firefighters quite literally ran out of water to put out these fires. 
-        <b>Entire neighborhoods were ERASED OVERNIGHT.
-        Over 525K acres were burned, 16.5K structures destroyed, and 31 fatalities were recorded. 
-        Lives, families, homes, businesses, and wildlife were engulfed in these death flames <sup><a href="https://www.fire.ca.gov/incidents/2025" target="_blank" style="color: steelblue;">2</a></sup>. </b>
-        We personally knew some friends and families who had to be evacuated to escape this disaster, because the smoke was unbreathable.
-        As climate change leads to longer and dryer seasons, wildfire frequency and intensity are expected to continue skyrocketing across the state<sup><a href="https://www.drought.gov/news/study-finds-climate-change-blame-record-breaking-california-wildfires-2023-08-08" target="_blank" style="color: steelblue;">3</a></sup>.
-    </p>
-    
-    <p class="w3-center fade-in" style="color:red;">
-        <b>This is unacceptable.</b> 
-    </p>
-    <p class="fade-in">
-        Because of this, <b>understanding WHERE wildfires tend to occur has become more important than ever</b>.
-        Fortunately, we have access to decades of historical wildfire data <sup><a href="https://firms.modaps.eosdis.nasa.gov/country/" target="_blank" style="color: steelblue;">4</a></sup>. 
-        We plan to apporach this problem by first analyzing county-level patterns to train machine-learning models that will predict future breakout locations.
-        This knowledge will hopefully serve as a baseline to be further expanded on. 
-        In turn, this should assist in California policymaking, resource allocations, hazard prevention, evacuation efforts, and many, many more forms aid that will ultimately protect Californians from this increasingly dangerous reality. 
-    </p>
-    <div class="w3-row fade-in">
-        <div class="w3-col m6 w3-center w3-padding-large">
-        <img src="images/every_fire.png" class="w3-round w3-image w3-opacity" alt="INTRO PICTURE" width="500" height="333">
-        <p><b><i class="fa fa-user w3-margin-right"></i>A map of California wildfires from 2014-2024.</b></p><br>
+<!-- GLOBAL ASH PARTICLE BACKGROUND -->
+<canvas id="ashCanvas"></canvas>
+
+
+
+<!-- ABSTRACT (SLIDES) -->
+<div id="abstract">
+    <div class="abstract-slides">
+
+        <!-- LEFT AND RIGHT ARROWS -->
+        <div class="slide-nav">
+            <button class="prev-slide">&#10094;</button>
+            <button class="next-slide">&#10095;</button>
+        </div>
+        
+        <!-- SLIDES-->
+        <div class="slide w3-center w3-container fade-in" id="slide-1">
+            <h2 class="w3-center">
+                <b>
+                    How good is your intuition?
+                </b>
+            </h2>
         </div>
 
-        <div class="w3-col m6 w3-padding-large fade-in">
-            <p>
-                <b>But before we dive into prediction, there's something important to understand: <p class="fade-in w3-center" style="color:red;">our intution about wildfires are often wrong.</p></b>
-                Take a look at this map of California that shows every confirmed wildfire that's recorded from 2014 to 2024. 
-                When we saw this map the first time, we tried identifying some emerging patterns at a first glance. 
-                "Dense clutters appear along the Sierra Nevada boundary, the northern forests, and parts of Southern California, whereas other regions are more sparse. 
-                At the county level, regions like Shasta, Butte, and Los Angeles consistently appear among the most fire-prone areas, while regions along the Central Valley floor or coastal corridors see far fewer breakouts."
-                However, this was simply OUR intution at a first glance. Is that all that is there to be seen with just a first glance? Of course not. 
-                <b>In order to truly grasp which areas need aid the most, we need to approach this with hard data.</b> 
+        <div class="slide w3-center w3-container" id="slide-2">
+            <p class="w3-center">
+                <b>
+                    In the past decade alone, California has experienced 9 of the 10 largest fires...<br>
+                </b>
+                <b style="font-size:24px;">
+                    More than 11 million acres have been burned since 2010.
+                </b>
+                <sup><a href="https://www.fire.ca.gov/our-impact/statistics" target="_blank" style="color: goldenrod;">1</a></sup>
             </p>
+            <p class="w3-center"><b style="font-size:50px; color:#C52233;">8 MILLION</b><br><b> FOOTBALL FIELDS</b></p>
+            <p class="w3-center"><b style="font-size:50px; color:#C52233;">6X LARGER</b><br><b> THAN THE U.S. STATE OF MARYLAND</b></p>
+            <p class="w3-center"><b style="font-size:50px; color:#C52233;">14 DAYS</b><br><b> OF NON-STOP DRIVING AT 60MPH</b></p>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-4">
+            <h3>
+                <b>
+                    One wildfire, or rather <b style="color:#C52233; font-size: 30px;">tragedy</b>, that you should be familiar with is the Palisades Fire.<br>
+                </b>
+            </h3>
+            <img src="images/la_wildfire.png" class="w3-round w3-image" style="padding:10px;" width="500">
+            <h3>
+                <b>
+                    It was the series of January 2025 wildfires that <b style="color:#C52233; font-size: 30px;">ravaged</b> Los Angeles.
+                </b>
+            </h3>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-5">
+            <p class="w3-center">
+                <b style="font-size:24px;">Let this sink in.</b>
+            </p>
+            <p class="w3-center"><b style="font-size:50px; color:#C52233;">525K</b><br><b> ACRES BURNED</b></p>
+            <p class="w3-center"><b style="font-size:50px; color:#C52233;">16.5K</b><br><b> STRUCTURES DESTROYED</b></p>
+            <p class="w3-center"><b style="font-size:50px; color:#C52233;">31</b><br><b> HUMAN DEATHS</b></p>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-6">
             <div id="human-caused-question" class="fade-in" style="text-align: center;">
-                <label for="humanSelect" style="text-align:center; color:#C52233;"><strong>FUN FACT: What percentage of wildfires do you think were caused by humans?</strong></label>
-                <div class="options">
-                    <button class="option-btn" data-answer="30">30%</button>
-                    <button class="option-btn" data-answer="50">50%</button>
-                    <button class="option-btn" data-answer="70">70%</button>
-                    <button class="option-btn" data-answer="90">90%</button>
+                <label for="humanSelect" style="text-align:center; font-size:24px;">
+                    <b>
+                        Let's try and put this in scale. 📏<br>
+                        Guess how much 525K acres is.
+                    </b>
+                </label>
+                <div class="options" style="padding-top:1rem;">
+                    <button class="option-btn" data-answer="A">Roughly 398K Football Fields.</button>
+                    <button class="option-btn" data-answer="B">About 2/3 the size of Rhode Island.</button>
+                    <button class="option-btn" data-answer="C">More than London and NYC combined.</button>
+                    <button class="option-btn" data-answer="D" id="optionD">ALL OF THE ABOVE</button>
                 </div>
-                <div id="humanAnswer" style="text-align:center;"></div>
+                <div id="humanAnswer" style="text-align:center; font-size:30px;"></div>
+                <p id="mcqReveal" class="fade-in-element">
+                    <b>Entire neighborhoods were </b>
+                    <b style="color:#C52233; font-size:30px;">ERASED OVERNIGHT.</b>
+                    <sup><a href="https://www.fire.ca.gov/incidents/2025" target="_blank" style="color: goldenrod;">2</a></sup><br>
+                    <b>
+                        We personally knew some friends and families who evacuated to escape this disaster, because the smoke was unbreathable.
+                    </b>
+                </p>
             </div>
         </div>
+
+        <div class="slide w3-center w3-container" id="slide-7">
+            <h4>
+                <b>
+                    As climate change leads to longer and dryer seasons, wildfire frequency and intensity are expected to continue skyrocketing across the state. 🚀
+                <sup><a href="https://www.drought.gov/news/study-finds-climate-change-blame-record-breaking-california-wildfires-2023-08-08" target="_blank" style="color: goldenrod;">3</a></sup>
+                </b>
+            </h4>
+            <p class="w3-center">
+                <b style="font-size:50px; color:#C52233;">
+                    This is unacceptable.
+                </b>
+            </p>
+            <h4>
+                <b>
+                    Understanding <i style="color:#C52233">WHERE</i> wildfires tend to occur is now more important than ever for safety.
+                </b>
+            </h4>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-8">
+            <h3>
+                <b>
+                    Fortunately, we have access to decades of historical wildfire data from the NASA MODIS Satellite. 🛰️
+                    <sup><a href="https://firms.modaps.eosdis.nasa.gov/country/" target="_blank" style="color: goldenrod;">4</a></sup><br><br>
+                    We plan to apporach this problem by utilizing the power of<br>
+                    <b style="color:#24B27E; font:50px 'Courrier New', monospace;">machine learning</b><br>
+                    to predict future breakout locations and <b style="color:#24B27E; font-size:24px;">SAVE LIVES.</b><br><br>
+                </b>
+            </h3>
+            <p>
+                <b>This would help California policymaking, resource allocations, hazard prevention, evacuation efforts, and other forms of aid.</b><br> 
+            </p>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-9">
+            <h3>
+                <b>
+                    There is something important to understand first. 
+                    <b style="color: #FF4E50;">Our INTUITION about wildfires are often wrong.</b>
+                </b>
+            </h3>
+            <h4>
+                <b>
+                    Take a look at this map. What do you see? 🤔 Click the map to read OUR <b style="color:#C52233">first thoughts</b> below.
+                </b>
+            </h4>
+            <div class="slides-tooltip-container">
+                <img src="images/every_fire-no_background.png" class="w3-round w3-image" width="300">
+                <span class="slides-tooltip-text">
+                    "Dense clutters appear along the Sierra Nevada boundary, the northern forests, and parts of Southern California, whereas other regions are more sparse. 
+                    At the county level, regions like Shasta, Butte, and Los Angeles consistently appear among the most fire-prone areas, 
+                    while regions along the Central Valley floor or coastal corridors see far fewer breakouts."
+                </span>
+            </div>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-10">
+            <h2>
+                <b>
+                    Was our analysis completely correct with just a first glance?
+                </b>
+            </h2>
+            <h1>
+                <b style="color: #FF4E50">Of course not. 👎</b>
+            </h1>
+            <h3>
+                <b>
+                    In order to truly grasp <b style="color:#C52233">which areas need aid the most</b>, 
+                    we need to approach this with <b style="color:#24B27E; font-size:24px;">hard data. 📊
+                </b>
+            </h3>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-11">
+            <h2 style="color: #FF4E50">
+                <b>
+                    Intution alone can be misleading.
+                </b>
+            </h2>
+            <h3>
+                <b>
+                    Patterns that look obvious at first glance might hide deeper trends.<br>
+                    To prove our point 📌, let's test <b style="color: #FF4E50">YOUR INTUITION</b> before we see the real data.
+                </b>
+            </h3>
+            <p>
+                We made a game that shows a timelapse of California wildfires to help illustrate the severity of this issue.<br>
+                Before watching the animation, make a naive prediction:<br>
+                <b style="color:#C52233">Which California county do you believe will have the most wildfires by the end of the decade? 🤔</b><br>
+            </p>
+        </div>
+
+        <div class="slide w3-center w3-container" id="slide-12">
+            <h2>
+                <b style="color: #FF4E50">
+                    This isn't just a guessing challenge.
+                </b>
+            </h2>
+            <h3>
+                <b>
+                    It is the reason why <b style="color:#24B27E; font:24px 'Courrier New', monospace;">DATA-DRIVEN PREDICTION MODELS</b> are needed to protect California.<br>
+                </b>
+            </h3>
+            <div class="scroll-to-start">
+                <b>
+                    SCROLL DOWN TO START THE CHALLENGE ↓
+                </b>
+            </div>
+        </div>
+
+        <!-- SLIDE PROGRESS BAR -->
+        <div class="slide-progress">
+            <div class="slide-progress-fill"></div>
+        </div>
+
     </div>
-
-    <p class="fade-in">
-        <b>Intuition alone can be misleading.
-        Patterns that look obvious at first glance might hide deeper trends.
-        To prove our point, let's test YOUR intution before we see the real data.</b>
-        We designed an interactive visualization that shows a timelapse of California wildfires to help illustrate the severity of California wildfires.
-        The interactive visualization is a map that animates every recorded wildfire in California from 2014 to 2024.
-        You can visualize how fire activity shifts over time, where clusters tend to build up, which regions get hit repeatedly, and how fast these fires accumulate over the years.
-        Before watching the timelapse, make a prediction:
-        <b>Which California county do you believe will have the most wildfires by the end of the decade?</b>
-        Your choice reflects the current human mental model of wildfire behavior.
-        <b>Try basing your prediction based on what you know so far. Have you heard anything from the news recently? Read any articles?</b>
-        After the animation finishes, you'll see how your intuition compares to the data, and how quickly wildfire activity actually escalates over time.
-    </p>
-
-    <p class="w3-center fade-in" style="color:red;">
-        <b>This isn't just a guessing challenge.<br>
-        It's a grim reminder that the pace and spread of wildfires often exceed what we expect, and why DATA-DRIVEN PREDICTION MODELS are becoming essential for protecting communities across California.</b> 
-    </p>
-
 </div>
 
 
 
-<!-- SECOND BANNER -->
-<div class="bgimg-2 w3-display-container w3-opacity-min" id="map-section">
+<!-- MAP BANNER -->
+<div class="bgimg-2 w3-display-container" id="map-section">
     <div class="w3-display-middle">
         <span class="w3-xxlarge w3-text-white w3-wide">MAP</span>
     </div>
 </div>
 
 <!-- MAP SECTION -->
-<div class="w3-content w3-container w3-padding-64" id="map">
-    <h3 class="w3-center fade-in">CALIFORNIA TIMELAPSE</h3><br>
+<div class="w3-padding-64" id="map">
 
-    <p class="w3-center fade-in">INSTRUCTIONS</p>
-    <p id="instructions" class="w3-left-align fade-in" style="max-width: 850px; margin: auto;">
-        1. <b>🗺️ Hover over the map</b> to view county names.<br>
-        2. <b>🤔 Choose a county</b> that you think will have the most wildfires from 2014–2024.<br>
-        3. <b>⏱️ Use the time slider</b> to explore wildfires on any specific date.<br>
-        4. <b>⏯️ Press the play button</b> to animate cumulative wildfire activity over time.<br>
-        5. <b>🎚️ Adjust the playback speed</b> with the speed control.<br>
-        6. <b>🤯 Watch the bar chart update</b> below to discover which county accumulated the most wildfires!<br>
-        7. <b>🤔 Feel free to reselect</b> other counties as the timelapse plays to refine your prediction. Just follow your intuition!<br>
-        </p>
-
-    <h4 id="mapTitle" class="w3-center fade-in"><br>MAP OF CALIFORNIA</h4><br>
+    <h3 class="w3-content w3-center fade-in"><b>WELCOME TO THE CALIFORNIA TIMELAPSE.</b></h3><br>
     
-    <div id="mapContainer" class="map-container fade-in">
-        <svg id="mapSvg"></svg>
-        <canvas id="fireCanvas"></canvas>
+    <!-- INSTRUCTION CARDS -->
+    <h4 class="w3-content w3-center fade-in"><i>INSTRUCTIONS</i></h3><br>
+    <div id="instructionsContainer" class="w3-center fade-in">
+        <div class="w3-quarter w3-card w3-padding w3-margin-bottom instruction-card">
+            <div class="icon">🗺️</div>
+            <div class="step">01</div>
+            <p><b>Hover over the map</b><br> to view county names.<br>(Desktop Only)</p>
+        </div>
+        <div class="w3-quarter w3-card w3-padding w3-margin-bottom instruction-card">
+            <div class="icon">🤔</div>
+            <div class="step">02</div>
+            <p><b>Choose a county</b><br> you think will have the most wildfires in the past decade.</p>
+        </div>
+        <div class="w3-quarter w3-card w3-padding w3-margin-bottom instruction-card">
+            <div class="icon">⏱️</div>
+            <div class="step">03</div>
+            <p><b>Use the time slider</b><br> to view wildfire activity and counts on a specific date.</p>
+        </div>
+        <div class="w3-quarter w3-card w3-padding w3-margin-bottom instruction-card">
+            <div class="icon">⏯️</div>
+            <div class="step">04</div>
+            <p><b>Press the play button</b><br> to animate cumulative wildfire activity over time.</p>
+        </div>
+        <div class="w3-quarter w3-card w3-padding w3-margin-bottom instruction-card">
+            <div class="icon">⏩</div>
+            <div class="step">05</div>
+            <p><b>Adjust the playback speed</b><br> with the speed toggle.<br> (Default is set to Fast).</p>
+        </div>
+        <div class="w3-quarter w3-card w3-padding w3-margin-bottom instruction-card">
+            <div class="icon">🤯</div>
+            <div class="step">06</div>
+            <p><b>Watch the bar chart update</b><br> and discover if your prediction was correct.</p>
+        </div>
     </div>
 
-    <div id="tooltip"></div>
 
-    <div id="controls" class="fade-in">
-        <div id="dateSelector">
-            <div class="date-row">
-                <label for="dateSlider"><strong>Select Date 📅</strong></label>
-                <span id="dateLabel"></span>
+    <!-- RANKING DASHBOARD -->
+    <div id="dash" class="w3-row w3-center fade-in">
+        <div id="first-place" class="w3-quarter w3-section">
+            <span id="first" class="w3-xlarge w3-bold"></span><br>
+            <b>1st Place</b>
+        </div>
+        <div id="second-place" class="w3-quarter w3-section">
+            <span id="second" class="w3-xlarge w3-bold"></span><br>
+            <b>2nd Place</b>
+        </div>
+        <div id="third-place" class="w3-quarter w3-section">
+            <span id="third" class="w3-xlarge w3-bold"></span><br>
+            <b>3rd Place</b>
+        </div>
+        <div id="current-rank" class="w3-quarter w3-section">
+            <span id="curr" class="w3-xlarge w3-bold"></span><br>
+            <b>Current Rank</b>
+        </div>
+    </div>
+
+    <!-- WARNING -->
+    <div id="warning" class="w3-content fade-in" style="text-align: center; font-weight:bold; color:#FF4E50; background-color: darkred; font-size:28px;">
+        ⚠️ SELECT A COUNTY ON THE MAP BEFORE PRESSING PLAY! ⚠️
+    </div>
+
+    <!-- ANSWER -->
+    <div id="answer" class="w3-content fade-in" style="text-align: center; font-size:28px;"></div>
+
+    <!-- CONTAINER FOR CHART + MAP + CONTROLS -->
+    <div id="vizContainer" class="fade-in">
+
+        <!-- CONTAINER FOR CHART + MAP -->
+        <div id="mainContainer" class="fade-in">
+
+            <!-- BAR CHART -->
+            <div id="stats" class="fade-in"></div>
+
+            <!-- MAP -->
+            <div id="mapContainer" class="map-container fade-in">
+                <svg id="mapSvg"></svg>
+                <canvas id="fireCanvas"></canvas>
             </div>
 
-            <input type="range" id="dateSlider">
-            <div class="play-row">
-                <button id="playButton" class="w3-round w3-button w3-light-grey">▶ Play</button>
-                <button id="speedButton" class="w3-round w3-button w3-light-grey">▶▶▶ Fast</button>
+            <!-- TOOLTIP -->
+            <div id="tooltip"></div>
+
+        </div>
+
+        <!-- CONTAINER FOR CONTROLS -->
+        <div id="controls" class="fade-in">
+            <div id="dateSelector">
+                <div class="date-row">
+                    <label for="dateSlider"><strong>Select Date 📅</strong></label>
+                    <span id="dateLabel"></span>
+                </div>
+
+                <input type="range" id="dateSlider">
+                <div class="play-row">
+                    <button id="playButton" class="w3-round w3-button w3-light-grey">▶ Play</button>
+                    <button id="speedButton" class="w3-round w3-button w3-light-grey">▶▶▶ Fast</button>
+                </div>
             </div>
         </div>
 
     </div>
 
-    <div id="warning" class="fade-in" style="text-align: center; font-weight:bold; color:red;">⚠️ It is recommended to scroll back up to the previous section and select a county prediction before pressing play! ⚠️</div>
-    <div id="answer" class="fade-in" style="text-align: center;"></div>
-    <div id="stats" class="fade-in"></div>
-
-    <p class="w3-center fade-in">
-        Once you've completed the game, take a moment to reflect on the results.
-        Were you suprised by which county had the most wildfires?
-        Most people are. Most guesses based on pure intuition were wrong. Our intuition simply cannot keep up with the true scale and speed of wildfire activity in California.
-    </p>
-
-    <p class="w3-center fade-in" style="color:red;">
-        <b>
-            But why should we care? Remember:<br>
-            Every bar in this chart represents burned land, destroyed homes, displaced families, and ecosystems trying to recover.<br>
-            Each of these dots you see is a wildfire that has the potential to ruin human lives.<br>
-            What seemed like not much at the start quickly ramped up as the years went by.<br>
-            This visualization will only get more disgustingly larger in the future, and thus it is our job to be as accurate as possible to minimize the impact of these wildfires.
-        </b> 
-    </p>
+    <!-- GAME CONCLUSION REVEAL -->
+    <div class="w3-content w3-center fade-in">
+        <p id="click-to-continue-text" style="font-size:20px;">
+            <b>
+                Click the button after you have completed the game to reveal the conclusions.
+            </b>
+        </p>
+        <p id="summary-text" style="font-size:20px;"></p>
+        <button id="reveal-btn" class="modern-btn">Continue</button>
+    </div>
 
 </div>
 
 
 
 
-<!-- THIRD BANNER -->
-<div class="bgimg-3 w3-display-container w3-opacity-min" id="model-section">
+<!-- MODEL BANNER -->
+<div class="bgimg-3 w3-display-container" id="model-section">
     <div class="w3-display-middle">
         <span class="w3-xxlarge w3-text-white w3-wide">MODEL</span>
     </div>
@@ -259,167 +457,252 @@
 <!-- MODEL SECTION -->
 <div class="w3-content w3-container w3-padding-64" id="model">
 
-    <p class="w3-center fade-in">
-        After seeing how unpredictable and fast-moving wildfire activity can be, the real question becomes:<br><br>
-        <b>Can we do better than intuition? Of course! This is where machine learning comes in.</b><br><br>
-        Using historical wildfire records and county-level fire patterns, 
-        we can start by training basic machine-learning models to estimate the likelihood of at least one wildfire occurring at a specific County on any given day in California.
-        <b>The goal is to evolve beyond mere human judgment. This will help give firefighters, policymakers, and communities more information to make better judgements.</b><br><br>
-    </p>
-
-    <h3 class="w3-center fade-in">PROTOTYPE MODEL</h3>
-    <p class="w3-center fade-in"><em>Coordinates → Fire Probability</em></p>
-
-    <div id="prototype-model" class="w3-row w3-padding-32 w3-section fade-in">
-
-        <div class="w3-center w3-container">
-        <img src="images/baseline_model.jpg" class="w3-round w3-image w3-opacity fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">Here, our prototype "model" (not really) takes in the input coordinates, rounds them, and returns the historical percentage of wildfires that occured at those exact coordinates
-            during the timeframe of our entire dataset. Later, we decided to scrap the direction of this idea, and try something different.</p>
-
-    </div>
-
-
-    <h3 class="w3-center fade-in">MODEL</h3>
-    <p class="w3-center fade-in"><em>County + Date → Fire Prediction</em></p>
-
-    <div id="model" class="w3-row w3-padding-32 w3-section fade-in">
-
-        <div class="w3-center w3-container">
-        <img src="images/model_outline.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            Here, our model is trying to predict a binary output (True/False) whether or not at least one fire will occur on a given county and date.
-            Our model takes two inputs. The first is an integer that represents a county. The second is a date that is split into 3 distinct features (year, month, day).
-            These four features are combined into a feature vector. We have a list of y values that are either True or False. Our y values represent whether a county on a given date actually had one or more fires that day.
-            We used logistic regression with the Python module statsmodel, to get a decimal value.
-            We evaluated this decimal value to be above or below a threshold we set while we were tuning hyperparameters, which is 0.018.
-            Above means True, below means False. We then compared those predicted y values to the actual y values to evaluate our accuracy.
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model1.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            First, we combined two json files. The first json file had a list of vectors of 0s and 1s.
-            Each vector had a length of 58, representing the amount of counties. The order is important. Each 0 represents a fire was not present in that county, and 1 represents a fire was present.
-            The number of vectors represent how many unique dates was recorded by the MODIS satellite in our 10 year dataset.
-            The second json file was a simple list of all 58 County names, in order according to the other json file. The previous dataset was not named.
-            We combined these two json files to create a dataframe, which allowed us to see the binary fires with the County names.
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model2.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            Next, we transposed the dataframe to make it easier to process later on.
-            We took the date column, and extracted the year, month, and date from each element. This is to make more features for the model to train with.
-            We combined those features into the transposed dataframe.
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model3.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            Let us now call this combined dataframe as feature_df.
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model4.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            Meanwhile, we took feature_df, and created a new vector of booleans. This is to get our actual y values, since we are predicting whether a fire has occured at a County on a specific date.
-            We iterated through the feature_df in this order: (Date1, CountyA), (Date2, CountyA), ..., (Date1, CountyB), ..., (Date_n-1, CountyN), (Date_n, CountyN).
-            Our new vector has a length of the number of dates times the number of Counties.
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model5.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            In order to incorporate our new y value vector, we had to reshape the dataframe to match the length.
-            Instead of having 58 columns as counties, we condensed it into a single column within feature_df, assigned integers representing each county,
-            and numbered them on that new column.
-            This allowed us to combine the reshaped feature_df and y value vector easily. 
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model6.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            Now, we finally have our X matrix and y vector.
-            We split this into a train/test split, and prepared to train the model.
-        </p>
-
-        <div class="w3-center w3-container">
-        <img src="images/model7.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            We used X train and y train to fit our logistic regression model.
-            Then we passed X_test through our model, and processed the decimal outputs through a threshold of 0.018.
-            This allowed us to make our y predicted outputs as booleans.
-        </p>
-        
-        <div class="w3-center w3-container">
-        <img src="images/model8.png" class="w3-round w3-image fade-in" style="width:75%">
-        </div>
-
-        <p class="w3-center fade-in">
-            Finally, we compared our actual y values to our predicted y values.
-            We evaluated our accuracy based on the amount of True Positives and True Negatives over the total number of predictions.
-            Ultimately however, we did sacrifice some accuracy to get less False Negatives, 
-            because we would rather not be preparred for a fire that never broke out, versus being unpreparred for a fire that is about to break.
-        </p>
-
-    </div>
-        
-
-    <h3 class="w3-center fade-in">TAKEAWAYS</h3>
-    <p class="w3-center fade-in">
-        Wildfires are not just natural events.
-        They are accelerating, intensifying, and reshaping lives for the worse across California. 
-        Over the past decade, we have now seen how quickly small sparks can become statewide emergencies, and how entire regions have become more vulnerable than ever before.<br><br>
-        <b>Through the visualizations, we learned that our intuition alone is not enough to understand the scale of the problem.</b> 
-        Patterns that seem obvious at first glance hide deeper trends, and even experienced observers often underestimate how and where fire activity builds from year to year.<br><br>
-        That is why modeling matters.<br><br>
-        Of course, our prototype machine learning models are not magical foolproof predictors, but it is an important step towards proactively condemning California wildfires. 
-        If we can begin to estimate the likelihood of future wildfires, we can give communities, firefighters, 
-        and policymakers critical information they can use to prepare, allocate resources, and act early.<br><br>
-        <b>Our model can be greatly improved upon. This is just a baseline of where to start, and we hope this inspires you to take action.</b> 
-        For more information, check out our <a href="https://github.com/j2doan/firecluster_story" target="_blank" style="color: steelblue;">github repo</a>.
-        California's wildfire crisis will continue to evolve, but so will our tools, our understanding, and our ability to respond.
-        With better modeling, better data, and better preparation, we can build a future where fewer California communities become ruined by these devastations.
-    </p>
-
-    <p class="w3-center fade-in" style="color:red;">
+    <!-- EXPLORE -->
+    <p class="w3-center fade-in" style="font-size:20px;">
         <b>
-            California wildfires are a massive problem and our assumptions about them are usually inaccurate.<br>
-            But luckily, we have the power of machine learning.<br>
-            Therefore we can use this to save lives.
-        </b> 
+            Can we do better than intuition? Of course! This is where machine learning comes in.<br><br>
+        </b>
     </p>
-    
+    <h1 class="w3-center fade-in" style="color:#24B27E; font:100px 'Courrier New', monospace;">
+        <b>
+            EXPLORE
+        </b>
+    </h1>
+    <h4 class="w3-center fade-in" style="font-size:18px; padding-bottom: 20px;"">
+        our model below.
+    </h4>
+    <p class="w3-center fade-in green-gradient" style="font-size:30px;">
+        <b>
+            <em>
+                "Our mission is to evolve beyond mere human judgment."<br><br>
+            </em>
+        </b>
+    </p>
+
+    <!-- GALLERY TITLE-->
+    <h3 class="w3-center fade-in"><b>CURRENT MODEL</b></h3>
+    <p class="w3-center fade-in"><em>County + Date → Fire Prediction</em><br></p>
+
+    <!-- GALLERY CONTAINER -->
+    <div class="w3-center" style="position: relative; max-width: 75%; margin: auto;">
+
+        <!-- THE ACTUAL GALLERY -->
+        <div class="modelSlide fade-in">
+            <p class="caption">Outline</p>
+            <img src="images/model_outline.png" class="w3-image w3-round" style="width:100%">
+            <p class="w3-center">
+                Here, our model is trying to predict a binary output (True/False) whether or not at least one fire will occur on a given county and date.
+                Our model takes two inputs. The first is an integer that represents a county. The second is a date that is split into 3 distinct features (year, month, day).
+                These four features are combined into a feature vector. We have a list of y values that are either True or False. Our y values represent whether a county on a given date actually had one or more fires that day.
+                We used logistic regression with the Python module statsmodel, to get a decimal value.
+                We evaluated this decimal value to be above or below a threshold we set while we were tuning hyperparameters, which is 0.018.
+                Above means True, below means False. We then compared those predicted y values to the actual y values to evaluate our accuracy.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">1. Combining JSON Files</p>
+            <img src="images/model1.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                First, we combined two json files. The first json file had a list of vectors of 0s and 1s.
+                Each vector had a length of 58, representing the amount of counties. The order is important. Each 0 represents a fire was not present in that county, and 1 represents a fire was present.
+                The number of vectors represent how many unique dates was recorded by the MODIS satellite in our 10 year dataset.
+                The second json file was a simple list of all 58 County names, in order according to the other json file. The previous dataset was not named.
+                We combined these two json files to create a dataframe, which allowed us to see the binary fires with the County names.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">2. Extracting Date Features</p>
+            <img src="images/model2.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                Next, we transposed the dataframe to make it easier to process later on.
+                We took the date column, and extracted the year, month, and date from each element. This is to make more features for the model to train with.
+                We combined those features into the transposed dataframe.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">3. Building Feature Dataframe</p>
+            <img src="images/model3.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                Let us now call this combined dataframe as feature_df.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">4. Extracting y Vector</p>
+            <img src="images/model4.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                Meanwhile, we took feature_df, and created a new vector of booleans. This is to get our actual y values, since we are predicting whether a fire has occured at a County on a specific date.
+                We iterated through the feature_df in this order: (Date1, CountyA), (Date2, CountyA), ..., (Date1, CountyB), ..., (Date_n-1, CountyN), (Date_n, CountyN).
+                Our new vector has a length of the number of dates times the number of Counties.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">5. Combining y Vector</p>
+            <img src="images/model5.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                In order to incorporate our new y value vector, we had to reshape the dataframe to match the length.
+                Instead of having 58 columns as counties, we condensed it into a single column within feature_df, assigned integers representing each county,
+                and numbered them on that new column.
+                This allowed us to combine the reshaped feature_df and y value vector easily. 
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">6. Train/Test Split</p>
+            <img src="images/model6.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                Now, we finally have our X matrix and y vector.
+                We split this into a train/test split, and prepared to train the model.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">7. Fitting Model</p>
+            <img src="images/model7.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                We used X train and y train to fit our logistic regression model.
+                Then we passed X_test through our model, and processed the decimal outputs through a threshold of 0.018.
+                This allowed us to make our y predicted outputs as booleans.
+            </p>
+        </div>
+
+        <div class="modelSlide" style="display:none">
+            <p class="caption">8. Evaluating Predictions</p>
+            <img src="images/model8.png" class="w3-image w3-round" style="width:100%">
+            <p>
+                Finally, we compared our actual y values to our predicted y values.
+                We evaluated our accuracy based on the amount of True Positives and True Negatives over the total number of predictions.
+                Ultimately however, we did sacrifice some accuracy to get less False Negatives, 
+                because we would rather not be preparred for a fire that never broke out, versus being unpreparred for a fire that is about to break.
+            </p>
+        </div>
+
+        <!-- GALLERY CONTROLS -->
+        <a class="model-prev-slide w3-button w3-dark-grey fade-in" style="position:absolute; border-radius:10%; top:0%; left:0; z-index: 10;">❮</a>
+        <a class="model-next-slide w3-button w3-dark-grey fade-in" style="position:absolute; border-radius:10%; top:0%; right:0; z-index: 10;">❯</a>
+
+    </div>
+
+    <!-- DEMO -->
+    <p class="w3-center fade-in" style="font-size:20px; padding-top: 40px;">
+        <b>
+            Interested in how our model works?<br><br>
+        </b>
+    </p>
+    <h1 class="w3-center fade-in" style="color:#24B27E; font:100px 'Courrier New', monospace;">
+        <b>
+            DEMO
+        </b>
+    </h1>
+    <h4 class="w3-center fade-in" style="font-size:18px; padding-bottom: 20px;"">
+        our model below.
+    </h4>
+    <p class="w3-center fade-in green-gradient style="font-size:30px;">
+        <b>
+            <em>
+                Pick a county and date and see if a fire will occur there on that day.<br>
+            </em>
+        </b>
+    </p>
+
+    <!-- MODEL DEMO CONTAINER -->
+    <div id="modelContainer" class="fade-in">
+
+        <!-- THE ACTUAL MODEL DEMO UI -->
+        <div id="modelUI">
+            
+            <!-- FEATURE INPUTS -->
+            <div class="model-inputs">
+                <select id="modelCountySelect">
+                    <option value="" disabled selected>County</option>
+                </select>
+
+                <select id="modelYearSelect">
+                    <option value="" disabled selected>Year</option>
+                </select>
+
+                <select id="modelMonthSelect">
+                    <option value="" disabled selected>Month</option>
+                </select>
+
+                <select id="modelDaySelect">
+                    <option value="" disabled selected>Day</option>
+                </select>
+            </div>
+
+            <!-- MODEL DEMO OUTPUT -->
+            <div id="modelOutput">
+                —
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- CONCLUSION BANNER (REUSED bgimg-3) -->
+<div class="bgimg-3 w3-display-container" id="conclusion">
+    <div class="w3-display-middle">
+        <span class="w3-xxlarge w3-text-white w3-wide">CONCLUSION</span>
+    </div>
+</div>
+
+<!-- CONCLUSION CONTAINER -->
+<div class="w3-content w3-container w3-padding-64" id="takeaways">
+
+    <h3 class="w3-center fade-in">
+        <b>
+            WHAT HAVE WE LEARNED?
+        </b>
+    </h3>
+    <h4 class="w3-center fade-in">
+        <b>
+            <br>
+            🔥 California Wildfires are a threat that causes unimaginable death, destruction, and suffering.<br><br>
+
+            ⚠️ Unfortunately, our assumptions and intuitions about them are usually inaccurate.<br><br>
+            
+            😔 If only there was a way to accurately predict wildfires...<br><br>
+            
+            💪📊 This would give California the critical information to prepare resources effectively.<br><br>
+            
+            🤖📈 Luckily, we can utilize machine learning to approach this task.<br><br>
+            
+            🚀 We made a baseline of where to start, and we hope this inspires you to take action.<br><br>
+
+            🔗📂 For more information, check out our <a href="https://github.com/j2doan/firecluster_story" target="_blank" style="color: goldenrod;">github repo</a>.<br><br>
+
+            🧠📊🛠️ With better modeling, better data, and better preparation...<br><br>
+            
+            🏞️🤝 We can build a safer future to protect California and save lives.<br><br>
+        </b>
+    </h4>
+
 </div>
 
 
 
 
 <!-- FOOTER -->
-<footer class="w3-center w3-black w3-padding-64 w3-opacity" id="credits">
-    <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>Back to top</a>
-    <p>Authors</p>
-    <p>Jacob Doan, Dylan Berry, Vanessa Feng</p>
+<footer class="w3-center w3-padding-64 wildfire-footer" id="credits">
+    <p class="w3-text-white w3-large">Authors</p>
+    <p class="w3-text-light-grey">Jacob Doan • Dylan Berry • Vanessa Feng</p>
 </footer>
+<style>
+.wildfire-footer {
+    background: linear-gradient(135deg, #1c1c1c, #5a1a00, #bf2c00);
+    color: white;
+    letter-spacing: 1px;
+}
+</style>
+
 
 <script>
     // Modal Image Gallery

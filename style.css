@@ -1,3 +1,21 @@
+/* 
+    CSS DISCLAIMER:
+    The styles below are organized in the order they were created.
+*/
+
+/* 
+    BACKGROUND COLOR PALETTE:
+    dark visual studio #1e1e1e
+    dark modern #1f1f1f
+    pandas #292a2b
+*/
+
+body {
+    background-color: #1e1e1e;
+}
+
+
+
 /* MAKE SLIDER LABELS ON OPPOSITE SIDES */
 
 .date-row {
@@ -11,6 +29,8 @@
 #dateSlider {
     width: 100%;
 }
+
+
 
 /* DATE SLIDER COLOR */
 
@@ -34,6 +54,7 @@
     cursor: pointer;
     margin-top: -4px;
 }
+
 
 
 /* COUNTIES */
@@ -60,12 +81,13 @@
     color: #d33;
 }
 
+
+
 /* TITLE MOBILE VS DESKTOP */
 
 .title-item {
     display: inline-block;
     padding: 8px 16px;
-    background: black;
     color: white;
     font-size: 24px;
     letter-spacing: 4px;
@@ -88,6 +110,8 @@
     }
 }
 
+
+
 /* TOOLTIP */
 
 .tooltip {
@@ -109,6 +133,8 @@
     pointer-events: all;
 }
 
+
+
 /* MCQ */
 
 .options {
@@ -122,11 +148,12 @@
 }
 
 .option-btn {
+    color: white;
     padding: 12px 16px;
     font-size: 16px;
     border-radius: 10px;
-    border: 1px solid #ccc;
-    background-color: #f8f8f8;
+    border: 1px solid rgb(255, 255, 255, 0.5);
+    background-color: gray;
     cursor: pointer;
 
     transition: all 250ms ease;
@@ -134,20 +161,20 @@
 
 .option-btn:hover {
     transform: translateY(-2px);
-    border-color: #888;
+    border-color: rgb(255, 255, 255, 0.5);
     box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-    background-color: #f0f0f0;
+    background-color: darkgrey;
 }
 
 .option-btn.correct {
-    background-color: #4CAF50;
+    background-color: #4ade80;
     color: white;
     border: 1px solid #2c7a30;
     box-shadow: 0 4px 10px rgba(76, 175, 80, 0.35);
 }
 
 .option-btn.wrong {
-    background-color: #f44336;
+    background-color: #f87171;
     color: white;
     border: 1px solid #9b2020;
     box-shadow: 0 4px 10px rgba(244, 67, 54, 0.35);
@@ -158,19 +185,40 @@
     transform: translateY(-2px);
 }
 
+#optionD,
+#mcqReveal {
+    display: none;
+}
+
+.fade-in-element {
+    opacity: 0;
+    transition: opacity 0.8s ease;
+}
+
+.fade-in-element.visible {
+    opacity: 1;
+}
+
 #humanAnswer {
     margin-top: 15px;
     font-weight: bold;
 }
 
+
+
+/* GAME PREDICTION REVEAL */
+
 #warning {
     margin-top: 15px;
+    border-radius: 50px;
 }
 
 #answer {
     margin-top: 15px;
     font-weight: bold;
 }
+
+
 
 /* PLAY AND SPEED BUTTON */
 
@@ -180,11 +228,15 @@
     transition: all 250ms ease;
 }
 
+
+
 /* INSTRUCTIONS */
 
-#instructions b {
+#instructionsContainer b {
     color:#C52233;
 }
+
+
 
 /* BAR CHART */
 
@@ -203,6 +255,8 @@
     display: block;
 }
 
+
+
 /* ELEMENTS FADE IN */
 
 .fade-in {
@@ -215,6 +269,8 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+
 
 /* MAP CONTAINER RESIZE */
 
@@ -235,18 +291,593 @@
     left: 0;
 }
 
-/* 
-COLOR PALETTE
 
-light -> dark red
 
-C52233 instructions, questions
-A51C30 slider
-A7333F hover over
-74121D bar chart predline, map predict
-580C1F
+/* ASH CONTAINER */
 
-and even lighter red
+#ashCanvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
 
-d8a6a6 bar chart
-*/
+
+
+/* CHART + MAP + CONTROL CONTAINERS */
+
+#vizContainer {
+    width: 100%;
+    max-width: 1310px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* CONTROLS CONTAINER */
+
+#controls {
+    margin: 0 auto 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(51, 52, 53, 0.5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 1310px;
+}
+
+
+
+/* CHART + MAP CONTAINER */
+
+#mainContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    margin: 0;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+#mapContainer {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 1;
+    height: auto;
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 10px;
+    background-color: rgba(51, 52, 53, 0.5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    --map-container-width: max-content;
+}
+
+#mapContainer svg, #mapContainer canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+#stats {
+    max-width: 800px;
+    border-radius: 10px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    padding: 20px;
+    background-color: rgb(51, 52, 53, 0.5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    --stats-container-width: max-content;
+}
+
+@media (max-width: 768px) {
+    #mainContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #mapContainer, #stats {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+
+/* DASHBOARD RANKING CONTAINER */
+
+#dash {
+    margin-top: 50px;
+    background-color: rgb(51, 52, 53);
+}
+
+#first {
+    color: gold;
+}
+
+#second {
+    color: silver;
+}
+
+#third {
+    color: #CD7F32;
+}
+
+#first-place {
+    background-color: rgb(255, 215, 0, 0.25);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#second-place {
+    background-color: rgb(192, 192, 192, 0.25);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#third-place {
+    background-color: rgb(205, 127, 50, 0.25);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#current-rank {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+/* INSTRUCTIONS CONTAINER */
+
+#instructionsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+}
+
+.instruction-card {
+    display: flex;
+    flex: 0 1 220px;
+    max-width: 220px;
+    min-height: 160px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: rgba(41,42,43,0.6);
+    color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    padding: 16px;
+}
+
+.instruction-card:hover {
+    transform: translateY(-5px);
+}
+
+.instruction-card .icon {
+    margin: 20px 0; 
+    font-size: 36px;
+}
+
+.instruction-card .step {
+    font-family: "Roboto", sans-serif;
+    background-color: rgba(255,255,255,0.15);
+    width: 120%;                 /* full card width */
+    text-align: center;          /* center the number */
+    font-size: 35px;             /* nice readable size */
+    font-weight: bold;
+    padding: 6px 0;              /* height of the bar */
+    margin: 10px 0;              /* spacing above/below */
+    border-top: 2px solid rgba(255,255,255,0.25);
+    border-bottom: 2px solid rgba(255,255,255,0.25);
+}
+
+
+
+/* GAME CONCLUSION REVEAL */
+
+.fade-in-line {
+        opacity: 0;
+        transition: opacity 0.8s ease-in;
+        display: block;
+    }
+
+.fade-in-line.visible {
+    opacity: 1;
+}
+
+.modern-btn {
+    background-color: gray;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.modern-btn:hover {
+    background-color: darkgray;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+
+.modern-btn:active {
+    background-color: black;
+    transform: translateY(2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+#summary-text b {
+    color: #FF4E50;
+}
+
+
+
+/* TITLE SCREEN */
+
+.click-to-start {
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #ffffffcc;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    animation: pulseStart 2s infinite ease-in-out;
+}
+
+@keyframes pulseStart {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+#title-area {
+    background-color: rgb(0, 0, 0, 0.8);
+    border-radius: 25px;
+    padding: 10px;
+}
+
+
+
+/* MAKE NAV BAR ALWAYS AT THE TOP */
+
+.w3-top {
+    z-index: 50;
+}
+
+
+
+/* SLIDES */
+
+.abstract-slides {
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    opacity: 0;
+    transition: all 0.5s ease;
+    z-index: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.slide.active {
+    left: 0;
+    opacity: 1;
+}
+
+.slide-nav {
+    position: absolute;
+    bottom: 7.5vh;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 2rem;
+    box-sizing: border-box;
+    z-index: 10; /* ensure nav is above slides */
+}
+
+.slide-nav button {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+    border-radius: 50%;
+    border: none;
+    background: rgba(0,0,0,0.7);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.slide-nav button:hover {
+    background: rgba(197,34,51,0.9);
+}
+
+
+
+/* SLIDE BUTTON POSITIONS */
+
+.prev-slide,
+.next-slide {
+    position: relative;
+}
+.prev-slide {
+    left: 5vw;
+}
+.next-slide {
+    right: 5vw;
+}
+
+
+
+/* SLIDE PROGRESS BAR */
+
+.slide-progress {
+    position: absolute;
+    bottom: 7.5%;
+    left: 5%;
+    width: 90%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    z-index: 10;
+}
+
+.slide-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+
+
+/* CLICK ON MAP TO SEE DESCRIPTION */
+
+.slides-tooltip-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.slides-tooltip-container .slides-tooltip-text {
+    visibility: hidden;
+    width: 260px;
+    background-color: rgba(0,0,0,0.85);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 0.8rem;
+    position: absolute;
+    z-index: 100;
+
+    /* CENTER ON TOP OF IMAGE */
+    top: 50%;    
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 0.9rem;
+    line-height: 1.3;
+}
+
+
+
+/* SCROLL DOWN TO START LAST SLIDE BOBBING ANIMATION */
+
+.scroll-to-start {
+    padding-top: 10px;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: #ffffffcc;
+    text-transform: uppercase;
+    user-select: none;
+    position: relative;
+    animation: bob 1.8s infinite ease-in-out;
+}
+
+@keyframes bob {
+    0%   { transform: translateY(0); }
+    50%  { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+
+
+/* MODELING GREEN GRADIENT */
+
+.green-gradient {
+    background: linear-gradient(90deg, #67e8f9, #a7f3d0, #d8b4fe);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+
+
+/* MODEL IMAGE GALLERY */
+
+.caption {
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.modelSlide {
+    animation: fadeEffect 0.5s ease-in-out;
+}
+
+@keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+
+
+/* MODEL DEMO CONTAINER */
+
+#modelContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1000px;
+    min-height: 300px;
+    height: auto;
+
+    position: relative;
+    overflow: visible;
+    margin: 0 auto;
+
+    border-radius: 10px;
+    background-color: rgba(51, 52, 53, 0.5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+}
+
+@media (max-width: 600px) {
+    #modelContainer {
+        aspect-ratio: auto;
+        padding: 40px;
+    }
+}
+
+#modelUI {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+.model-inputs {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.model-inputs select {
+    padding: 14px 40px 14px 16px;
+    font-size: 18px;
+    min-width: 150px;
+    max-width: 180px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.35);
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.model-inputs select:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.model-inputs select option {
+    color: black;
+}
+
+#modelOutput {
+    margin-top: 40px;
+    font-size: clamp(28px, 6vw, 56px);
+    font-weight: 900;
+    padding: 25px 50px 35px 50px;
+    width: clamp(250px, 60%, 600px);
+    border-radius: 12px;
+    background-color: rgba(0,0,0,0.35);
+    transition: background 0.5s ease;
+    border: 5px solid rgba(255,255,255,0.35);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.8s ease;
+}
+
+
+
+/* FIRE AND WATER BACKGROUND TRUE/FALSE */
+
+.fire {
+    background: linear-gradient(270deg, #FF4E50, #FC913A, #F9D423, #FF4E50);
+    background-size: 600% 600%;
+    animation: fireBG 3s ease infinite;
+}
+
+.water {
+    background: linear-gradient(270deg, #00C6FB, #005BEA, #00C6FB);
+    background-size: 600% 600%;
+    animation: waterBG 4s ease infinite;
+}
+
+@keyframes fireBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes waterBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+#modelOutput.fire {
+    background-color: #FF4E50;
+    transition: background-color 0.8s ease;
+}
+
+#modelOutput.water {
+    background-color: #005BEA;
+    transition: background-color 0.8s ease;
+}
