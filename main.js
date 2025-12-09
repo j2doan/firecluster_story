@@ -157,9 +157,9 @@ function tickForward() {
 
             const answerDiv = d3.select("#answer");
             if (predictedCounty === correctCounty) {
-                answerDiv.html(`✅ WOW your prediction was CORRECT! ✅<br> Either your prediction was a impressive insight, ridiculously lucky, or... 🤨`);
+                answerDiv.html(`✅ WOW your prediction was CORRECT! ✅<br> Your prediction was a impressive insight, ridiculously lucky, or suspicious...`);
             } else {
-                answerDiv.html(`❌ Sorry your prediction was INCORRECT! ❌<br> It just goes to show the unfortunate flaws and limits of human intuition... 😔`);
+                answerDiv.html(`❌ Sorry your prediction was INCORRECT! ❌<br> It just goes to show the unfortunate flaws and limits of human intuition...`);
             }
         }
     }
@@ -619,8 +619,8 @@ buttons.forEach(btn => {
         if (userAnswer === "D") {
             btn.classList.add('correct');
             answerDiv.innerHTML = 
-                "Correct! Did that suprise you?";
-            answerDiv.style.color = "limegreen";
+                "Correct! Did that surprise you?";
+            answerDiv.style.color = "#4ade80";
             
             // RENDER THE REMAINING TEXT WITH A DELAY
             mcqReveal.style.display = "block";
@@ -844,15 +844,15 @@ draw();
 
 
 const points = [
-        "🤯 Most guesses were wrong.",
-        "😔 Our intuition simply cannot keep up with the true scale and speed of wildfire activity in California.",
-        "🤔 But why should we care?",
-        "🔥 <b>Every bar represents burned land, destroyed homes, displaced families, and ecosystems wiped off the map.</b>",
-        "🙏 <b>Each of these dots you see is a wildfire that can ruin hundreds of thousnds of innocent human lives.</b>",
-        "📈 The number of Wildfires will inevitably increase from here on out.",
-        "🌋 And California will soon turn into a blazing hell.",
-        "🎯 As data scientists, it is our job to be as accurate as possible to minimize the impact of these wildfires.",
-        "🤖 And that is where the power of machine learning comes in!"
+        "<b>Most guesses were wrong.</b>",
+        "Our intuition simply cannot keep up with the true scale and speed of wildfire activity in California.",
+        "But why should we care?",
+        "Every bar represents burned land, destroyed homes, displaced families, and ecosystems wiped off the map.",
+        "Every dot is a wildfire that can ruin <b>hundreds of thousands of innocent human lives.</b>",
+        "The number of Wildfires will inevitably increase from here on out.",
+        "And California will soon turn into a <b>blazing hell.</b>",
+        "As data scientists, it is our job to be as accurate as possible to minimize the impact of these wildfires.",
+        "<b style=\"color:#24B27E;\">And that is where the power of machine learning comes in!</b>"
 ];
 
 let reveal = 0;
