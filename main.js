@@ -1083,7 +1083,7 @@ function updatePrediction() {
         return;
     }
 
-    modelOutputBox.textContent = result ? "TRUE" : "FALSE";
+    modelOutputBox.textContent = result ? "YES" : "NO";
     modelOutputBox.style.color = "white";
 
     // APPLY THE GRADIENT BACKGROUND COLOR 
